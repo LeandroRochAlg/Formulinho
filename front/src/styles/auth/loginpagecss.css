@@ -26,12 +26,8 @@
 
 /* Form header */
 .form-header {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  text-align: left;
   margin-bottom: 20px;
-  
 }
 
 .form-header h1 {
