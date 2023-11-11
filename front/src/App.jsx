@@ -1,5 +1,5 @@
 import React from 'react'
-import {RouterProvider} from 'react-router-dom';
+import {RouterProvider, Outlet} from 'react-router-dom';
 import AppRouters from './Router';
 import { AnimatePresence } from 'framer-motion';
 
@@ -10,6 +10,7 @@ function App() {
     <AnimatePresence initial={false}>
       <RouterProvider router={AppRouters}/>
     </AnimatePresence>
+    <Outlet/>
     </>
   )
 }
