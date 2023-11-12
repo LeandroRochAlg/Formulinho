@@ -2,6 +2,8 @@ import "../../styles/auth/homepage.css";
 import Header from "./components/Header";
 import Input from "../../components/Input";
 import React, { useState } from 'react';
+import RaceDetails from "./components/RaceDetails";
+import Rating from "./components/Rating";
 
 const homePage = () => {
     return (
@@ -16,6 +18,12 @@ const homePage = () => {
                     <div className="content-img-container">
                         <img className="content-img" src="https://media.formula1.com/image/upload/t_16by9Centre/f_auto/q_auto/v1699540981/fom-website/2023/United%20States%20(Austin)/GettyImages-1739561537.jpg.transform/9col/image.jpg" alt="Lewis Hamilton"/>
                     </div>
+                    <> 
+                        <RaceDetails/>
+                    </>
+                    <> 
+                        <Rating/>
+                    </>
                 </div>
             </div>
         </div> 
