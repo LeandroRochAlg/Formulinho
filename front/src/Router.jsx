@@ -20,6 +20,10 @@ const AppRouters = createBrowserRouter([
         path: "/home",
         element: <HomePage />
     }
+    {
+        path: "/home2",
+        element: <HomePage2 />
+    }
 ]);
 
 export default AppRouters;
