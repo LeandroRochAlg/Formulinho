@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "username": "jaumzito",
+      "email": "jaum@teste.com.br",
+      "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i"
+    },
+    {
+      "id": 2,
+      "username": "chaves",
+      "email": "chaves@chaves.com",
+      "password": "$2b$10$h3oBYHzyzR/WuW3a8xPGvuzEQbwks/MGXaY5W/ICi3ACWLKhAXwh."
+    }
+  ]
