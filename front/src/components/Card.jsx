@@ -23,16 +23,17 @@ const Card = ( ) => {
     []);
 
     return (<>
-       <div class="card">
-            <div class="img"></div>
-            <div class="text">
-                <p>VENCEDOR: <span>{winner ? `${winner.givenName} ${winner.familyName}` : " "}</span> </p>
-                <p>EQUIPE: <span>{team ? `${team.name}` : " "}</span></p>
-                <p>VOLTA MAIS RÁPIDA: <span>{fastestLap ? `${fastestLap.time}` : " "}</span></p>
-                <p>LOCAL DA PROVA: <span>{place ? place : " "}</span></p>
-                
+       <div className="card">
+            <div className="img"></div>
+            <div className="text">
+                <ul className="card-list">
+                    <li><p className="card-text">VENCEDOR: <span className ="card-span">{winner ? `${winner.givenName} ${winner.familyName}` : " "}</span> </p></li>
+                    <li><p className="card-text">EQUIPE: <span className ="card-span">{team ? `${team.name}` : " "}</span></p></li>
+                    <li><p className="card-text">VOLTA MAIS RÁPIDA: <span className ="card-span">{fastestLap ? `${fastestLap.time}` : " "}</span></p></li>
+                    <li><p className="card-text">LOCAL DA PROVA: <span className ="card-span">{place ? place : " "}</span></p></li>
+                </ul>
             </div>
-            <div class="rating">    
+            <div className="rating">    
                 <p>★★★★★</p>
             </div>
         </div>
