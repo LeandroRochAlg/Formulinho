@@ -1,0 +1,48 @@
+.home-body {
+    background: linear-gradient(to bottom, #ffffff00, #E10600ff),
+                url('https://www.f1-fansite.com/wp-content/uploads/2022/11/SI202211202625_hires_jpeg_24bit_rgb.jpg') center/cover no-repeat;
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    list-style-type: none;
+    text-transform: uppercase;
+    letter-spacing: 5%;
+}
+
+.team {
+    font-size: 1.55rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+.winner {
+    font-size: 1.55rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+.place {
+    font-size: 2.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+.last-race {
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    color: #ffffff;
+}
+
+.f1 {
+    font-size: 5rem;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 'extra-bold';
+    color: #ffffff;
+}

@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
-import {motion as m} from "framer-motion";
 
 const Header = () => {
 
@@ -14,9 +13,14 @@ const Header = () => {
 
     return (
         <nav className="navbar" >
-            <div className="nav-icon">
-                <button className="nav-button" onClick={handleOpen}> 
-                    <img id="icon" src="https://www.svgrepo.com/show/147337/f1-helmet.svg" data-i18n="[alt]nav.logo" alt="Formula1"/>  
+            <div className="nav-itens">
+                <ul className="header-list">
+                    <li> Home </li>
+                    <li> Database </li>
+                </ul>
+            </div>
+            <div className="nav-button-container">
+                <button className="nav-button" onClick={handleOpen}>  
                     <span className="username">hamilton44</span>
                     <FontAwesomeIcon className="username" icon={faChevronDown} style={{fontSize: "1rem", paddingTop: '3px'}}/>  
                 </button> 
