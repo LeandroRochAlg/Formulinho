@@ -1,5 +1,5 @@
 import "../../styles/auth/searchpage.css";
-import Header from "./components/Header";
+import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import React, { useState, useRef } from 'react';
 import RaceDetails from "./components/RaceDetails";

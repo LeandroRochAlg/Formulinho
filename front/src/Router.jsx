@@ -7,7 +7,7 @@ import HomeScreen from "./pages/auth/HomeScreen.jsx";
 const AppRouters = createBrowserRouter([
     {
         path: "/",
-        element: <LoginPage />
+        element: <HomeScreen />
     },
     { 
         path: "/login",

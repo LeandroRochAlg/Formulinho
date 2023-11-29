@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from "./components/Header";
+import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "../../styles/auth/homescreencss.css";
@@ -27,7 +27,16 @@ const HomeScreen = () => {
 
     return (
         <>
-        <Header/>
+            <div className="home-header">
+                <header className="home-navbar">
+                    <div className="home-nav-itens">
+                        <ul className="home-header-list">
+                            <li> <Link to='/login'> Entrar </Link> </li>
+                            <li> <Link to='/register'> Registro </Link> </li>
+                        </ul>
+                    </div>
+                </header>
+            </div>
             <div className="home-body">
                 <h1 className="f1">formula 1</h1>
                 <p className='last-race'>ultima corrida:</p>

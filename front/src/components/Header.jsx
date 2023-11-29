@@ -1,4 +1,4 @@
-import "../../../styles/components/header.css";
+import "../styles/components/header.css";
 import React from 'react'
 import { Link } from "react-router-dom";
 import {FaChevronDown} from "react-icons/fa6";
