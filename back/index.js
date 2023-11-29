@@ -19,22 +19,24 @@ const User = require('./model/User');
 
 // Rota para login
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     
     // Busca usuário no "banco"
     const jsonPath = path.join(__dirname, 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
 
-    const user = usuarios.find((u) => u.email === email);   // Busca usuário por email
+    const user = usuarios.find((u) => u.username === username);
     
     // Se usuário não existir, retorna erro
     if (!user) {
         return res.status(400).json({ error: 'Usuário não encontrado' });
     }
+
+    const passwordValidado = await bcrypt.compare(password, user.password);
     
     // Se senha não bater, retorna erro
-    if (!(await bcrypt.compare(password, user.password))) {
-        return res.status(401).json({ error: 'Senha inválida' });
+    if (!passwordValidado) {
+        return res.status(401).json({ error: true, message: 'Senha inválida' });
     }
     
     // Gerar token
@@ -68,7 +70,6 @@ app.post('/create', async (req, res) => {
     if (password !== confirmPassword) {
         return res.status(403).json({ error: 'Senha e confirmação de senha não batem' });
     }
-
     
     // Criptografa senha
     const salt = await bcrypt.genSalt(10);
@@ -82,5 +83,5 @@ app.post('/create', async (req, res) => {
     fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
     
     // Retorna usuário
-    res.send('Usuário criado com sucesso!');
+    res.status(201).send('Usuário criado com sucesso!');
 });
