@@ -1,8 +1,7 @@
 import "../../../styles/components/header.css";
 import React from 'react'
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
+import {FaChevronDown} from "react-icons/fa6";
 
 const Header = () => {
 
@@ -22,7 +21,7 @@ const Header = () => {
             <div className="nav-button-container">
                 <button className="nav-button" onClick={handleOpen}>  
                     <span className="username">hamilton44</span>
-                    <FontAwesomeIcon className="username" icon={faChevronDown} style={{fontSize: "1rem", paddingTop: '3px'}}/>  
+                    <FaChevronDown className="username" style={{fontSize: "1rem", paddingTop: '3px'}}/>  
                 </button> 
                 {open ? (
                     <ul className="Menu">

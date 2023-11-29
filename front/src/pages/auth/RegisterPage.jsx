@@ -1,7 +1,7 @@
 import "../../styles/auth/loginpagecss.css";
 import ButtonComponent from "../../components/ButtonComponent";
 import {set, useForm} from 'react-hook-form';
-import axios, * as others from 'axios';
+import api from '../../libs/api';
 import { useState } from 'react';
 import {Link} from "react-router-dom";
 
@@ -20,7 +20,7 @@ const RegisterPage = () => {
         console.log('Data submitted:', data);
         
         try {
-            const response = await axios.post('http://localhost:3000/create', data);
+            const response = await api.post('/create', data);
             setMsg(response.data);
             if(response.data.includes('sucesso'))
                 setUserCriado(true);

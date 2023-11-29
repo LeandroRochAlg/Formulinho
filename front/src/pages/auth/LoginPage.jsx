@@ -2,9 +2,8 @@ import "../../styles/auth/loginpagecss.css";
 import ButtonComponent from "../../components/ButtonComponent";
 import {Link, Navigate} from "react-router-dom";
 import {useForm} from 'react-hook-form';
-import axios, * as others from 'axios';
+import api from '../../libs/api';
 import { useState } from 'react';
-import {motion as m} from "framer-motion";
 
 const loginPage = () => {
   
@@ -19,7 +18,7 @@ const loginPage = () => {
     const submit = async (data) => {
         
         try {
-            const response = await axios.post('http://localhost:3000/login', data);
+            const response = await api.post('/login', data);
             setMsg(response.data);
         } catch (error) {
             setMsg(error.response.data);

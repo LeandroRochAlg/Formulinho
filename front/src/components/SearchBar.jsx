@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {FaSistrix} from "react-icons/fa6";
 
 const SearchBar = ({ label, type, name, placeholder, classNm }) => {
   return (
@@ -12,7 +11,7 @@ const SearchBar = ({ label, type, name, placeholder, classNm }) => {
             placeholder= {placeholder}
         />
         <button className="search-icon">
-          <FontAwesomeIcon icon={faSearch} style={{fontSize: "1.2rem", paddingTop: '3px'}}/>
+          <FaSistrix style={{fontSize: "1.2rem", paddingTop: '3px'}}/>
         </button>
     </div>
   );

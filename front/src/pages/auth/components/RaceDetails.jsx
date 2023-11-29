@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../../styles/components/racedetails.css";
 
-
-
 export default function Disciplina({corrida}){
 
     const [winner, setWinner] = useState(null);

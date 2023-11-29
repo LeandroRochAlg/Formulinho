@@ -12,20 +12,7 @@ const HomeScreen = () => {
     const [team, setTeam] = useState(null);
 
     useEffect(() => {
-        // Fetch information about the last race
-        const fetchLastRaceInfo = async () => {
-            try {
-                const response = await axios.get('https://ergast.com/api/f1/current/last/results.json?limit=1');
-                setLastRaceInfo(response.data);
-            } catch (error) {
-                console.error('Error fetching last race info:', error);
-            }
-
-            
-        };
-
         const corrida = 'https://ergast.com/api/f1/current/last/results.json?limit=1';
-
         fetch(corrida)
             .then(response => response.json())
             .then(data => {
@@ -35,9 +22,8 @@ const HomeScreen = () => {
                 setPlace(race.raceName);
                 setTeam(race.Results[0].Constructor);
             });
-
-
-    }, []);
+        },
+    []);
 
     return (
         <>

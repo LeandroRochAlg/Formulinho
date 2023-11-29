@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import SearchBar from "../../components/SearchBar";
 import React, { useState, useRef } from 'react';
 import RaceDetails from "./components/RaceDetails";
-import Rating from "./components/Rating";
 
 const SearchPage = () => {
     return (
@@ -26,9 +25,6 @@ const SearchPage = () => {
                     <div className="content-main">
                         <> 
                             <RaceDetails corrida={"https://ergast.com/api/f1/current/last/results.json?limit=1"}/>
-                        </>
-                        <>
-                            <Rating/>
                         </>
                     </div>
                 </div>
