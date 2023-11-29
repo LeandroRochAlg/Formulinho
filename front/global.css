@@ -4,3 +4,10 @@
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+}

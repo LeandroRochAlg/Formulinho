@@ -8,13 +8,6 @@
     --main-text-color: #120E10;
 }  
 
-body{
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    z-index: 0;
-}
-
 /* Corpo da página */
 .main-body{
     background-color: #ffffff;
