@@ -1,11 +1,12 @@
 import "../../styles/auth/loginpagecss.css";
-import ButtonComponent from "../../components/ButtonComponent";
-import {Link, Navigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import api from '../../libs/api';
 import { useState } from 'react';
 
 const loginPage = () => {
+
+  const nav = useNavigate();
   
   const [msg, setMsg] = useState(' ');
 
@@ -16,10 +17,13 @@ const loginPage = () => {
     const {errors} = formState;
 
     const submit = async (data) => {
+
+      console.log('Data submitted:', data);
         
         try {
             const response = await api.post('/login', data);
             setMsg(response.data);
+            nav('/search');
         } catch (error) {
             setMsg(error.response.data);
         }   
@@ -63,7 +67,7 @@ const loginPage = () => {
             </div>
             </div>
             <div className="form-submit">
-              <ButtonComponent text={"LOGIN"}/>
+              <button text={"LOGIN"}/>
               <p>Não tem conta? 
                 <Link to={'/register'} className="link"> Registre-se.</Link> 
               </p>

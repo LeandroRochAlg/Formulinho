@@ -1,5 +1,5 @@
 .home-body {
-    background: linear-gradient(to bottom, #ffffff00, #E10600ff),
+    background: linear-gradient(to bottom, #ffffff00, 70%, #E10600ff),
                 url('https://www.f1-fansite.com/wp-content/uploads/2022/11/SI202211202625_hires_jpeg_24bit_rgb.jpg') center/cover no-repeat;
     height: 100vh;
     width: auto;
@@ -11,6 +11,50 @@
     list-style-type: none;
     text-transform: uppercase;
     letter-spacing: 5%;
+}
+.home-navbar{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #E10600;
+    height: 6vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.home-nav-itens{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+.home-nav-itens a{
+    text-decoration: none;
+    color: #ffffff;
+    padding-right: 10px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    letter-spacing: .03rem;
+    font-size: 1rem;
+    transition: 0.1s;
+}
+
+.home-nav-itens a:hover{
+    color: #ffffff;
+    font-size: 1.05rem;  
+}
+
+.home-header-list{
+    display: flex;
+    list-style-type: none;
+    text-transform: uppercase;
+ 
+    color: #ffffff;
+    padding-right: 10px;
 }
 
 .team {

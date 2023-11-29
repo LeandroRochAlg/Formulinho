@@ -1,5 +1,4 @@
 import "../../styles/auth/loginpagecss.css";
-import ButtonComponent from "../../components/ButtonComponent";
 import {set, useForm} from 'react-hook-form';
 import api from '../../libs/api';
 import { useState } from 'react';
@@ -59,7 +58,7 @@ const RegisterPage = () => {
                         </div>
                     </div>
                     <div className="form-submit">
-                        <ButtonComponent text={"REGISTER"} />
+                        <button text={"REGISTER"} />
                         <p>Já tem conta?
                             <Link to={'/login'} className="link"> Faça login.</Link>
                         </p>
