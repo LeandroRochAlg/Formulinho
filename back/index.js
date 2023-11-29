@@ -49,6 +49,11 @@ app.post('/login', async (req, res) => {
 // Rota para cadastro
 app.post('/create', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
+
+    console.log(username);
+    console.log(email);
+    console.log(password);
+    console.log(confirmPassword);
     
     // Busca usuário no "banco"
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
@@ -64,7 +69,6 @@ app.post('/create', async (req, res) => {
         return res.status(403).json({ error: 'Senha e confirmação de senha não batem' });
     }
 
-    console.log(password);
     
     // Criptografa senha
     const salt = await bcrypt.genSalt(10);

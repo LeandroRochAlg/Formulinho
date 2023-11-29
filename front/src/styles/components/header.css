@@ -1,5 +1,12 @@
+:root{
+    --main-accent-color: #A60303;
+    --secondary-accent-color: #CBCCCC;
+    --tertiary-accent-color: #393939;
+    --main-text-color: #120E10;
+}  
+
 .navbar{
-    background-color: #400101;
+    background-color: var(--main-bg-color);
     height: 10vh;
     width: 100%;
     top: 0;
@@ -10,7 +17,7 @@
 }
 
 .nav-icon{
-    background-color: #fff;
+    background-color: var(--main-accent-color);
     height: 50px;
     width: 200px;
     padding: 2px;
@@ -28,6 +35,7 @@
 #icon{
     height: 6vh;
     width: auto;
+    filter: invert(95%) sepia(6%) saturate(693%) hue-rotate(71deg) brightness(108%) contrast(103%);
 }
 
 .nav-button{
@@ -41,8 +49,8 @@
 }
 
 .username{
-    color: #666b6d;
-    font-size: 1.2rem;
+    color: #f4fff8;
+    font-size: 1.0rem;
     font-weight: 400;
     margin-left: 10px;
 }
@@ -57,8 +65,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 9;
 
-    background-color: #f4fff8;
+    background-color: var(--secondary-accent-color);
     border-radius: 5px;
     width: 200px;
 }
@@ -66,16 +75,18 @@
 .Menu-item {
     cursor: pointer;
     font-family: 'Titillium Web';
-    font-size: 1.2rem;
-    font-weight: 400;   
+    text-transform: uppercase;
+    font-size: 1.0rem;
+    font-weight: 300;   
 }
 
 .op-item{
-    color: #666b6d;
+    color: var(--tertiary-accent-color);
     text-decoration: none;
     transition: 0.3s;
 }
 
 .op-item:hover{
-    color: #000704;
+    font-size: 1.1rem;
+    color: var(--main-text-color);
 }

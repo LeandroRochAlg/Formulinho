@@ -43,13 +43,10 @@ const Rating = ({
         <Box
             sx={{
                 display: 'inline-flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 cursor: 'pointer',
-                textAlign: 'left',
-                alignItems: 'flex-end',
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                marginRight: '3vh',
+                marginTop: '1vh',
                 marginBottom: '1vh'
             }}
             onClick={handleClick}
@@ -83,14 +80,14 @@ const Rating = ({
                                 position: 'absolute'
                             }}
                         >
-                            <FilledIcon style={{fontSize:"30px", color: '#315E54'}}/>
+                            <FilledIcon style={{fontSize:"1.2rem", color: '#F3C842'}}/>
                         </Box>
                         <Box 
                             sx={{
-                                color: showEmptyIcon ? '#152824' : 'inherit'
+                                color: showEmptyIcon ? '#393939' : 'inherit'
                             }}
                         >
-                            {showEmptyIcon ? <EmptyIcon style={{fontSize:"30px"}}/> : <FilledIcon style={{fontSize:"30px", color: '#315E54'}}/>}
+                            {showEmptyIcon ? <EmptyIcon style={{fontSize:"1.2rem"}}/> : <FilledIcon style={{fontSize:"1.2rem", color: '#F3C842'}}/>}
                         </Box>
                     </Box>
                 );

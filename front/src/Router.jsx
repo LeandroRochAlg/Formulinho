@@ -1,7 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
-import HomePage from "./pages/auth/HomePage.jsx";
+import SearchPage from "./pages/auth/SearchPage.jsx";
 
 const AppRouters = createBrowserRouter([
     {
@@ -17,13 +17,9 @@ const AppRouters = createBrowserRouter([
         element: <RegisterPage />
     },
     {
-        path: "/home",
-        element: <HomePage />
-    }
-    {
-        path: "/home2",
-        element: <HomePage2 />
-    }
+        path: "/search",
+        element: <SearchPage />
+    },
 ]);
 
 export default AppRouters;

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const SearchBar = ({ label, type, name, placeholder, classNm }) => {
-
   return (
     <div className={classNm}>
         <label>{label}</label>

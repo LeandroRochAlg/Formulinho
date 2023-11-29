@@ -1,14 +1,20 @@
 [
-    {
-      "id": 1,
-      "username": "jaumzito",
-      "email": "jaum@teste.com.br",
-      "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i"
-    },
-    {
-      "id": 2,
-      "username": "chaves",
-      "email": "chaves@chaves.com",
-      "password": "$2b$10$h3oBYHzyzR/WuW3a8xPGvuzEQbwks/MGXaY5W/ICi3ACWLKhAXwh."
-    }
-  ]
+  {
+    "id": 1,
+    "username": "jaumzito",
+    "email": "jaum@teste.com.br",
+    "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i"
+  },
+  {
+    "id": 2,
+    "username": "chaves",
+    "email": "chaves@chaves.com",
+    "password": "$2b$10$h3oBYHzyzR/WuW3a8xPGvuzEQbwks/MGXaY5W/ICi3ACWLKhAXwh."
+  },
+  {
+    "id": 3,
+    "username": "hamilton44",
+    "email": "hamilton44@ex.com",
+    "password": "$2b$10$47fxl7kDCYdwhPOEe8OqDO7XbsShzKnyM85Nl5EAg3WOn8YyobtF6"
+  }
+]
