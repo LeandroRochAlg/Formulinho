@@ -34,5 +34,11 @@
     "username": "Nicolas",
     "email": "nicolas@gg",
     "password": "$2b$10$MqQ6oT0mGJ6WKStcg2w3bOUQGgtIzRtI69BC8nJhewbCGktc9ZnXS"
+  },
+  {
+    "id": 7,
+    "username": "verstappen33",
+    "email": "verstapen@redbull.com",
+    "password": "$2b$10$q0mmodPFwjklHM4QbIXY6ewp.9T4RWjwfl9ZqCjZHcFhR8pAJfGH."
   }
 ]
