@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/card.css";
 
+
+
 const Card = ( ) => {
     const [winner, setWinner] = useState(null);
     const [team, setTeam] = useState(null);
@@ -8,7 +10,7 @@ const Card = ( ) => {
     const [place, setPlace] = useState(null);    
 
     useEffect(() => {
-        const corrida = 'https://ergast.com/api/f1/current/last/results.json?limit=1';
+        const corrida = 'https://ergast.com/api/f1/current/last/results.json?season=2023';
         
         fetch(corrida)
         .then(response => response.json())
