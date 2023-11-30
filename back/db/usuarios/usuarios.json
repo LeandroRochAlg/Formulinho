@@ -70,5 +70,11 @@
     "username": "bottas77",
     "email": "bottas@alfaromeo.com",
     "password": "$2b$10$xT1ULeX8fm6peOgMsK/cJuhdpVSKbCPZF15ocP.P4O.xoKN09sF.C"
+  },
+  {
+    "id": 13,
+    "username": "AnaKelly",
+    "email": "kelly@gmail.com",
+    "password": "$2b$10$.0XauRWwUDhA5Y8XP64bvOJOhvgC3QkE4KmXLtDpSsI6GB4E4aWDu"
   }
 ]

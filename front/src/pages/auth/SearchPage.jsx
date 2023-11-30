@@ -5,11 +5,23 @@ import React, { useState, useEffect, useRef } from "react";
 import RaceDetails from "./components/RaceDetails";
 import Card from "../../components/Card";
 
+
+const formatarNome = (nome) => {
+  const nomeFormatado = nome.replace(/_/g, ' ').toUpperCase();
+  return nomeFormatado;
+};
+
+
 const SearchPage = () => {
   const [winners, setWinners] = useState([]);
   const [teams, setTeams] = useState([]);
   const [fastestLaps, setFastestLaps] = useState([]);
   const [places, setPlaces] = useState([]);
+  const [selectedRace, setSelectedRace] = useState(null);
+
+  const handleCardClick = (race) => {
+    setSelectedRace(race);
+  };
 
   const fetchData = async () => {
     const corrida = "https://ergast.com/api/f1/2023/results.json?limit=1000";
@@ -21,11 +33,12 @@ const SearchPage = () => {
     const fastestLapArray = [];
     const placeArray = [];
 
+    
     data.MRData.RaceTable.Races.forEach((race) => {
       winnerArray.push(race.Results[0].Driver.driverId);
       teamArray.push(race.Results[0].Constructor.name);
-      fastestLapArray.push(race.Results[0].FastestLap.Time.time);
-      placeArray.push(race.raceName);
+      fastestLapArray.push(race.Results[index].FastestLap.Time.time);
+      placeArray.push(race.Circuit.circuitName);
     });
 
     setWinners(winnerArray);
@@ -35,7 +48,7 @@ const SearchPage = () => {
   };
 
   const dadosCorrida = winners.map((winner, index) => ({
-    winners: winner,
+    winners: formatarNome(winner),
     teams: teams[index],
     fastestLaps: fastestLaps[index],
     places: places[index],
@@ -44,7 +57,9 @@ const SearchPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  
 
+console.log(selectedRace);
   return (
     <>
       <Header />
@@ -66,6 +81,7 @@ const SearchPage = () => {
               team={dados.teams}
               fastestLap={dados.fastestLaps}
               place={dados.places}
+              onClick={() => handleCardClick(dados)}
               key={index}
             />
           ))}
@@ -74,11 +90,10 @@ const SearchPage = () => {
           <div className="content">
             <div className="content-main">
               <>
-                <RaceDetails
-                  corrida={
-                    "https://ergast.com/api/f1/current/last/results.json?limit=1"
-                  }
-                />
+              
+              <RaceDetails selectedRace={selectedRace} />
+
+               
               </>
             </div>
           </div>
