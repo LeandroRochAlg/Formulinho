@@ -61,11 +61,6 @@ app.post('/create', async (req, res) => {
         return res.status(400).json({ error: 'Usuário já existe' });
     }
 
-    // Se senha e confirmação de senha não baterem, retorna erro
-    if (password !== confirmPassword) {
-        return res.status(403).json({ error: 'Senha e confirmação de senha não batem' });
-    }
-    
     // Criptografa senha
     const salt = await bcrypt.genSalt(10);
     const senhaCrypt = await bcrypt.hash(password, salt);

@@ -58,5 +58,17 @@
     "username": "asda",
     "email": "asd",
     "password": "$2b$10$YNv5PDmrEeL/wW9LqTAvw.2HREDZS4ThnWLtsI8IUzqLULS8norJu"
+  },
+  {
+    "id": 11,
+    "username": "sainz55",
+    "email": "sainz@ferrari.com",
+    "password": "$2b$10$z3ojYa3PjZ1XPJdJTACjg.mZra6Ki2wo9U0HFHf/JEGEfVajZw.aG"
+  },
+  {
+    "id": 12,
+    "username": "bottas77",
+    "email": "bottas@alfaromeo.com",
+    "password": "$2b$10$xT1ULeX8fm6peOgMsK/cJuhdpVSKbCPZF15ocP.P4O.xoKN09sF.C"
   }
 ]
