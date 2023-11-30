@@ -69,7 +69,7 @@ const loginPage = () => {
             <div className="form-submit">
               <button>LOGIN</button>
               {msg && (
-                  <div className={userCriado ? 'success-message' : 'error-message'}>
+                  <div className='error-message'>
                   <p>{msg}</p>
                   </div>
               )}
