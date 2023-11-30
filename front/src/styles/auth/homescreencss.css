@@ -12,6 +12,12 @@
     text-transform: uppercase;
     letter-spacing: 5%;
 }
+
+.home-body span{
+    color: #f4fff8;
+    letter-spacing: 0.9px;
+}
+
 .home-navbar{
     display: flex;
     justify-content: end;
@@ -52,10 +58,19 @@
     display: flex;
     list-style-type: none;
     text-transform: uppercase;
- 
     color: #ffffff;
     padding-right: 10px;
 }
+
+.home-header-list{
+    display: flex;
+    list-style-type: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding-right: 10px;
+}
+
+
 
 .team {
     font-size: 1.55rem;

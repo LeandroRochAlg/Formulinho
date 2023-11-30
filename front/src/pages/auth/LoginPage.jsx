@@ -67,7 +67,7 @@ const loginPage = () => {
             </div>
             </div>
             <div className="form-submit">
-              <button text={"LOGIN"}/>
+              <button>LOGIN</button>
               <p>Não tem conta? 
                 <Link to={'/register'} className="link"> Registre-se.</Link> 
               </p>
