@@ -10,7 +10,7 @@ const RegisterPage = () => {
     const [userCriado,setUserCriado] = useState(false);
     const form = useForm();
 
-    const { register, control, handleSubmit, formState } = form;
+    const { register, control, handleSubmit, formState, reset } = form;
 
     const {errors} = formState;
 
@@ -20,19 +20,20 @@ const RegisterPage = () => {
         
         try {
             const response = await api.post('/create', data);
-            setMsg(response.data);
+
             if (response.status === 201) {
-                setMsg('Successfully created!');
-                setUserCriado(true);
-            }else {
-                // Handle other status codes if needed
-                setMsg(response.data);
+              setMsg(response.data.message);
+              setUserCriado(true);
+              reset();
+            } else {
+              setMsg(response.data.error);
+              setUserCriado(false);
             }
-            } catch (error) {
-            setMsg(error.response.data);
-        }   
-    
-    }
+          } catch (error) {
+            setMsg(error.response.data.error);
+            setUserCriado(false);
+          }
+    };
 
 
     return (        
@@ -64,6 +65,11 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-submit">
                         <button>REGISTER</button>
+                        {msg && (
+                            <div className={userCriado ? 'success-message' : 'error-message'}>
+                            <p>{msg}</p>
+                            </div>
+                        )}
                         <p>Já tem conta?
                             <Link to={'/login'} className="link"> Faça login.</Link>
                         </p>

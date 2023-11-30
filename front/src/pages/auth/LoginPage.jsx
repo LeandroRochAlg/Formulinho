@@ -25,7 +25,7 @@ const loginPage = () => {
             setMsg(response.data);
             nav('/search');
         } catch (error) {
-            setMsg(error.response.data);
+            setMsg(error.response.data.error);
         }   
         
     }
@@ -68,6 +68,11 @@ const loginPage = () => {
             </div>
             <div className="form-submit">
               <button>LOGIN</button>
+              {msg && (
+                  <div className={userCriado ? 'success-message' : 'error-message'}>
+                  <p>{msg}</p>
+                  </div>
+              )}
               <p>Não tem conta? 
                 <Link to={'/register'} className="link"> Registre-se.</Link> 
               </p>

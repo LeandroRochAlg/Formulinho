@@ -122,3 +122,11 @@
 .form-submit button:hover {
   background-color: #cc0000;
 }
+
+.success-message p{
+  color: green;
+}
+
+.error-message p{
+  color: red;
+}
