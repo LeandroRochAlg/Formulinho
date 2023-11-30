@@ -28,5 +28,11 @@
     "username": "doug",
     "email": "doug@gmail.com",
     "password": "$2b$10$KFipQ4FB3QDIUPraMtbp9OyfrCtiktdJbhZcHTpCHoJX.9SPQ2nV2"
+  },
+  {
+    "id": 6,
+    "username": "Nicolas",
+    "email": "nicolas@gg",
+    "password": "$2b$10$MqQ6oT0mGJ6WKStcg2w3bOUQGgtIzRtI69BC8nJhewbCGktc9ZnXS"
   }
 ]

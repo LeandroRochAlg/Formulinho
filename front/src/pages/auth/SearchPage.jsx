@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import React, { useState, useRef } from 'react';
 import RaceDetails from "./components/RaceDetails";
+import Card from "../../components/card";
 
 const SearchPage = () => {
     return (
@@ -19,6 +20,7 @@ const SearchPage = () => {
                         classNm={"search-bar"}
                         />
                 </div>
+                <Card/>
         </div>
         <div className="main-content-container">
                 <div className="content">
@@ -29,7 +31,8 @@ const SearchPage = () => {
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>  
+        
         </>
     );
 };
