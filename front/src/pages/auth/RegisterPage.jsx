@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const RegisterPage = () => {
 
-    const [msg, setMsg] = useState();
+    const [msg, setMsg] = useState('');
     const [userCriado,setUserCriado] = useState(false);
     const form = useForm();
 
@@ -21,9 +21,14 @@ const RegisterPage = () => {
         try {
             const response = await api.post('/create', data);
             setMsg(response.data);
-            if(response.data.includes('sucesso'))
+            if (response.status === 201) {
+                setMsg('Successfully created!');
                 setUserCriado(true);
-        } catch (error) {
+            }else {
+                // Handle other status codes if needed
+                setMsg(response.data);
+            }
+            } catch (error) {
             setMsg(error.response.data);
         }   
     
