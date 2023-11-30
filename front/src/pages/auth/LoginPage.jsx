@@ -10,30 +10,25 @@ const loginPage = () => {
   
   const [msg, setMsg] = useState(' ');
 
-    const form = useForm();
+  const form = useForm();
 
-    const { register, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState } = form;
 
-    const {errors} = formState;
+  const {errors} = formState;
 
-    const submit = async (data) => {
+  const submit = async (data) => {
 
-      console.log('Data submitted:', data);
-        
-        try {
-            const response = await api.post('/login', data);
-            setMsg(response.data);
-            nav('/search');
-        } catch (error) {
-            setMsg(error.response.data);
-        }   
-        
-    }
-
-    if(msg.includes('Autenticado')){
-        return <Navigate to='/disciplinas' />
-    }
-
+    console.log('Data submitted:', data);
+      
+    try {
+        const response = await api.post('/login', data);
+        setMsg(response.data);
+        nav('/search');
+    } catch (error) {
+        setMsg(error.response.data.error);
+    }   
+      
+  }
 
   return (
       <div className="page-body">
@@ -68,6 +63,11 @@ const loginPage = () => {
             </div>
             <div className="form-submit">
               <button>LOGIN</button>
+              {msg && (
+                  <div className='error-message'>
+                  <p>{msg}</p>
+                  </div>
+              )}
               <p>Não tem conta? 
                 <Link to={'/register'} className="link"> Registre-se.</Link> 
               </p>

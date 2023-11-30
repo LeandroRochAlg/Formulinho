@@ -4,13 +4,26 @@ import api from '../../libs/api';
 import { useState } from 'react';
 import {Link} from "react-router-dom";
 
+import * as yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
+
 const RegisterPage = () => {
 
-    const [msg, setMsg] = useState();
+    const [msg, setMsg] = useState('');
     const [userCriado,setUserCriado] = useState(false);
-    const form = useForm();
+    
+    const schema = yup.object({
+        username: yup.string().required('Username obrigatório'),
+        email: yup.string().email('Email inválido').required('Email obrigatório'),
+        password: yup.string().min(4, 'Senha precisa ter no mínimo 4 caracteres'),
+        confirmPassword: yup.string().required('Confirme sua senha').oneOf([yup.ref('password')], 'As senhas devem coincidir')
+    });
 
-    const { register, control, handleSubmit, formState } = form;
+    const form = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const { register, control, handleSubmit, formState, reset } = form;
 
     const {errors} = formState;
 
@@ -20,14 +33,20 @@ const RegisterPage = () => {
         
         try {
             const response = await api.post('/create', data);
-            setMsg(response.data);
-            if(response.data.includes('sucesso'))
-                setUserCriado(true);
-        } catch (error) {
-            setMsg(error.response.data);
-        }   
-    
-    }
+
+            if (response.status === 201) {
+              setMsg(response.data.message);
+              setUserCriado(true);
+              reset();
+            } else {
+              setMsg(response.data.error);
+              setUserCriado(false);
+            }
+          } catch (error) {
+            setMsg(error.response.data.error);
+            setUserCriado(false);
+          }
+    };
 
 
     return (        
@@ -43,22 +62,31 @@ const RegisterPage = () => {
                         <div>
                             <label>Username:</label>
                             <input type="text" name="username" placeholder="hamilton44" {...register('username')} />
+                            <p className="erro">{errors.username?.message}</p>
                         </div>
                         <div>
                             <label>Email:</label>
                             <input type="text" name="email" placeholder="hamilton@ex.com" {...register('email')} />
+                            <p className="erro">{errors.email?.message}</p>
                         </div>
                         <div>
                             <label>Password:</label>
                             <input type="password" name="password" placeholder="********" {...register('password')} />
+                            <p className="erro">{errors.password?.message}</p>
                         </div>
                         <div>
                             <label>Confirm Password:</label>
                             <input type="password" name="confirmPassword" placeholder="********" {...register('confirmPassword')} />
+                            <p className="erro">{errors.confirmPassword?.message}</p>
                         </div>
                     </div>
                     <div className="form-submit">
                         <button>REGISTER</button>
+                        {msg && (
+                            <div className={userCriado ? 'success-message' : 'error-message'}>
+                            <p>{msg}</p>
+                            </div>
+                        )}
                         <p>Já tem conta?
                             <Link to={'/login'} className="link"> Faça login.</Link>
                         </p>
