@@ -6,6 +6,9 @@ import RaceDetails from "./components/RaceDetails";
 import Card from "../../components/card";
 
 const SearchPage = () => {
+
+    const i = 5;
+
     return (
         <>
         <Header/>
@@ -14,13 +17,15 @@ const SearchPage = () => {
                 <div className="main-search">
                     <SearchBar
                         label={""} 
-                        placeholder={"Pesquise piloto, pista ou data!"} 
+                        placeholder={"Pesquise piloto, pista ou equipe!"} 
                         type={"text"} 
                         name={"search"}
                         classNm={"search-bar"}
                         />
                 </div>
-                <Card/>
+                {Array(i).fill().map((_, index) => (
+                        <Card key={index} />
+                    ))}
         </div>
         <div className="main-content-container">
                 <div className="content">
