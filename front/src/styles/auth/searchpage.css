@@ -1,5 +1,22 @@
 /* FILEPATH: /c:/Users/Felip/Documents/ppfinal/vite-project/src/styles/auth/homepage.css */
 
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #5c0000;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #A60303;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #8d0000;
+}
+
 :root{
     --main-bg-color: #272727;
     --main-accent-color: #A60303;
@@ -22,7 +39,7 @@
     overflow: scroll;
     background-color: #272727;
     height: 100vh;
-    width: 70%;
+    width: 77%;
     z-index: 0;
     overflow-x: hidden;
 }
@@ -82,7 +99,7 @@
 .main-content-container{
     background-color: var(--main-accent-color);
     height: 100vh;
-    width: 30%;
+    width: 23%;
     overflow: hidden;
     z-index: 0;
     display: flex;
