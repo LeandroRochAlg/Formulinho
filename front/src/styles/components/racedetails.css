@@ -16,10 +16,9 @@
     font-family: 'Titillium Web';
     color: #f4fff8;
     letter-spacing: 0.9px;
-
 }
 
-span{
+.main-list span{
     font-size: 1.2rem;
     font-weight: 400;
     color: #f4fff8;
