@@ -32,7 +32,6 @@ const HomeScreen = () => {
                     <div className="home-nav-itens">
                         <ul className="home-header-list">
                             <li> <Link to='/login'> Entrar </Link> </li>
-                            <li> <Link to='/register'> Registro </Link> </li>
                         </ul>
                     </div>
                 </header>
