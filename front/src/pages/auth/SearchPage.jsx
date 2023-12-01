@@ -1,19 +1,71 @@
 import "../../styles/auth/searchpage.css";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
-import React, { useState, useEffect, useRef } from "react";
+import Filter from "../../components/Filter";
+import React, { useState, useEffect} from "react";
 import RaceDetails from "./components/RaceDetails";
 import Card from "../../components/Card";
 
+const formatarNome = (nome) => {
+  const nomeFormatado = nome.replace(/_/g, " ").toUpperCase();
+  return nomeFormatado;
+};
+
 const SearchPage = () => {
+  const years = [2023, 2022, 2021, 2020, 2019, 2018];
+
   const [winners, setWinners] = useState([]);
   const [teams, setTeams] = useState([]);
   const [fastestLaps, setFastestLaps] = useState([]);
   const [places, setPlaces] = useState([]);
+  const [selectedRace, setSelectedRace] = useState(null);
+  const [selectedYear, setSelectedYear] = useState("");
+  
+
+  const handleYearChange = async (event) => {
+    const selectedYear = event.target.value;
+  
+    setSelectedYear(selectedYear);
+    const corrida = `https://ergast.com/api/f1/${selectedYear}/results/1.json`;
+  
+    
+      const response = await fetch(corrida);
+      const data = await response.json();
+      console.log(data);
+      
+      const winnerArray = [];
+      const teamArray = [];
+      const fastestLapArray = [];
+      const placeArray = [];
+  
+      data.MRData.RaceTable.Races.forEach((race) => {
+        winnerArray.push(race.Results[0].Driver.driverId);
+        teamArray.push(race.Results[0].Constructor.name);
+        
+        if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
+          fastestLapArray.push(race.Results[0].FastestLap.Time.time);
+        } else {
+          fastestLapArray.push("Não Aplicável"); 
+        }
+  
+        placeArray.push(race.Circuit.circuitName);
+      });
+  
+      setWinners(winnerArray);
+      setTeams(teamArray);
+      setFastestLaps(fastestLapArray);
+      setPlaces(placeArray);
+  
+  };
+  
+
+  
+
+  const handleCardClick = (race) => {
+    setSelectedRace(race);
+  };
 
   const fetchData = async () => {
-    const corrida = "https://ergast.com/api/f1/2023/results.json?limit=1000";
-
     const response = await fetch(corrida);
     const data = await response.json();
     const winnerArray = [];
@@ -25,7 +77,7 @@ const SearchPage = () => {
       winnerArray.push(race.Results[0].Driver.driverId);
       teamArray.push(race.Results[0].Constructor.name);
       fastestLapArray.push(race.Results[0].FastestLap.Time.time);
-      placeArray.push(race.raceName);
+      placeArray.push(race.Circuit.circuitName);
     });
 
     setWinners(winnerArray);
@@ -35,7 +87,7 @@ const SearchPage = () => {
   };
 
   const dadosCorrida = winners.map((winner, index) => ({
-    winners: winner,
+    winners: formatarNome(winner),
     teams: teams[index],
     fastestLaps: fastestLaps[index],
     places: places[index],
@@ -53,11 +105,12 @@ const SearchPage = () => {
           <div className="main-search">
             <SearchBar
               label={""}
-              placeholder={"Pesquise piloto, pista ou equipe!"}
+              placeholder={"Pesquise pela pista!"}
               type={"text"}
               name={"search"}
               classNm={"search-bar"}
             />
+            <Filter options={years} onChange={handleYearChange} />
           </div>
 
           {dadosCorrida.map((dados, index) => (
@@ -66,6 +119,7 @@ const SearchPage = () => {
               team={dados.teams}
               fastestLap={dados.fastestLaps}
               place={dados.places}
+              onClick={() => handleCardClick(dados)}
               key={index}
             />
           ))}
@@ -74,11 +128,7 @@ const SearchPage = () => {
           <div className="content">
             <div className="content-main">
               <>
-                <RaceDetails
-                  corrida={
-                    "https://ergast.com/api/f1/current/last/results.json?limit=1"
-                  }
-                />
+                <RaceDetails selectedRace={selectedRace} />
               </>
             </div>
           </div>

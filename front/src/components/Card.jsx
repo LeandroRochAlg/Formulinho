@@ -1,9 +1,9 @@
 import "../styles/components/card.css";
 
-const Card = ({ winner, team, fastestLap, place }) => {
+const Card = ({ winner, team, fastestLap, place, onClick }) => {
   return (
     <>
-      <div className="card">
+      <div className="card" onClick={onClick}>
         <div className="img"></div>
         <div className="text">
           <ul className="card-list">
