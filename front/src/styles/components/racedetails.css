@@ -11,7 +11,7 @@
     text-align: center;
     list-style-type: none;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-transform: uppercase;
     font-family: 'Titillium Web';
     color: #f4fff8;
@@ -19,7 +19,7 @@
 }
 
 .main-list span{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #f4fff8;
     letter-spacing: 0.9px;
