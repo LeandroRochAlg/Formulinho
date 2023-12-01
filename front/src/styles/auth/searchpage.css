@@ -96,6 +96,28 @@
     color: #f4fff8;
 }
 
+.filter-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 1vh;
+    cursor: pointer;
+}
+
+.filter-year{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    width: 9vh;
+    height: 8vh;
+}
+
+.filter-option{
+    cursor: pointer;
+}
+
+  
 
 .main-content-container{
     background-color: var(--main-accent-color);
