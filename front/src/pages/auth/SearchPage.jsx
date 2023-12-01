@@ -110,7 +110,7 @@ const SearchPage = () => {
               name={"search"}
               classNm={"search-bar"}
             />
-            <Filter options={years} onChange={handleYearChange} />
+            <Filter className="Filter" options={years} onChange={handleYearChange} />
           </div>
 
           {dadosCorrida.map((dados, index) => (

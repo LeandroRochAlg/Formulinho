@@ -1,0 +1,13 @@
+.abt-body{
+    background: linear-gradient(to left, #ffffff00, 10%, rgb(19, 0, 88)),
+                url('https://www.f1-fansite.com/wp-content/uploads/2022/11/SI202211202625_hires_jpeg_24bit_rgb.jpg') center/cover no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
