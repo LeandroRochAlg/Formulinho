@@ -2,7 +2,7 @@ import "../../styles/auth/searchpage.css";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import Filter from "../../components/Filter";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import RaceDetails from "./components/RaceDetails";
 import Card from "../../components/Card";
 
@@ -20,54 +20,18 @@ const SearchPage = () => {
   const [places, setPlaces] = useState([]);
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedYear, setSelectedYear] = useState("");
-  
 
-  const handleYearChange = async (event) => {
-    const selectedYear = event.target.value;
-  
+  const fetchData = async (event) => {
+    const selectedYear = event?.target?.value || 2023;
+
     setSelectedYear(selectedYear);
+
     const corrida = `https://ergast.com/api/f1/${selectedYear}/results/1.json`;
-  
     
-      const response = await fetch(corrida);
-      const data = await response.json();
-      console.log(data);
-      
-      const winnerArray = [];
-      const teamArray = [];
-      const fastestLapArray = [];
-      const placeArray = [];
-  
-      data.MRData.RaceTable.Races.forEach((race) => {
-        winnerArray.push(race.Results[0].Driver.driverId);
-        teamArray.push(race.Results[0].Constructor.name);
-        
-        if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
-          fastestLapArray.push(race.Results[0].FastestLap.Time.time);
-        } else {
-          fastestLapArray.push("Não Aplicável"); 
-        }
-  
-        placeArray.push(race.Circuit.circuitName);
-      });
-  
-      setWinners(winnerArray);
-      setTeams(teamArray);
-      setFastestLaps(fastestLapArray);
-      setPlaces(placeArray);
-  
-  };
-  
-
-  
-
-  const handleCardClick = (race) => {
-    setSelectedRace(race);
-  };
-
-  const fetchData = async () => {
     const response = await fetch(corrida);
     const data = await response.json();
+    console.log(data);
+
     const winnerArray = [];
     const teamArray = [];
     const fastestLapArray = [];
@@ -76,7 +40,11 @@ const SearchPage = () => {
     data.MRData.RaceTable.Races.forEach((race) => {
       winnerArray.push(race.Results[0].Driver.driverId);
       teamArray.push(race.Results[0].Constructor.name);
-      fastestLapArray.push(race.Results[0].FastestLap.Time.time);
+      if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
+        fastestLapArray.push(race.Results[0].FastestLap.Time.time);
+      } else {
+        fastestLapArray.push("Não Aplicável");
+      }
       placeArray.push(race.Circuit.circuitName);
     });
 
@@ -84,6 +52,10 @@ const SearchPage = () => {
     setTeams(teamArray);
     setFastestLaps(fastestLapArray);
     setPlaces(placeArray);
+  };
+
+  const handleCardClick = (race) => {
+    setSelectedRace(race);
   };
 
   const dadosCorrida = winners.map((winner, index) => ({
@@ -110,7 +82,7 @@ const SearchPage = () => {
               name={"search"}
               classNm={"search-bar"}
             />
-            <Filter options={years} onChange={handleYearChange} />
+            <Filter options={years} onChange={fetchData} />
           </div>
 
           {dadosCorrida.map((dados, index) => (
@@ -139,3 +111,26 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
+
+
+
+  // const fetchData = async () => {
+  //   const response = await fetch(corrida);
+  //   const data = await response.json();
+  //   const winnerArray = [];
+  //   const teamArray = [];
+  //   const fastestLapArray = [];
+  //   const placeArray = [];
+
+  //   data.MRData.RaceTable.Races.forEach((race) => {
+  //     winnerArray.push(race.Results[0].Driver.driverId);
+  //     teamArray.push(race.Results[0].Constructor.name);
+  //     fastestLapArray.push(race.Results[0].FastestLap.Time.time);
+  //     placeArray.push(race.Circuit.circuitName);
+  //   });
+
+  //   setWinners(winnerArray);
+  //   setTeams(teamArray);
+  //   setFastestLaps(fastestLapArray);
+  //   setPlaces(placeArray);
+  // };
