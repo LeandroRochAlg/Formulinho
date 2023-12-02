@@ -17,6 +17,7 @@ const SearchPage = () => {
     years.push(year);
   }
 
+  const [circuitId, setCircuitId] = useState([]);
   const [winners, setWinners] = useState([]);
   const [teams, setTeams] = useState([]);
   const [fastestLaps, setFastestLaps] = useState([]);
@@ -35,12 +36,14 @@ const SearchPage = () => {
     const data = await response.json();
     console.log(data);
 
+    const circuitIdArray = [];
     const winnerArray = [];
     const teamArray = [];
     const fastestLapArray = [];
     const placeArray = [];
 
     data.MRData.RaceTable.Races.forEach((race) => {
+      circuitIdArray.push(race.Circuit.circuitId);
       winnerArray.push(race.Results[0].Driver.driverId);
       teamArray.push(race.Results[0].Constructor.name);
       if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
@@ -51,6 +54,7 @@ const SearchPage = () => {
       placeArray.push(race.Circuit.circuitName);
     });
 
+    setCircuitId(circuitIdArray);
     setWinners(winnerArray);
     setTeams(teamArray);
     setFastestLaps(fastestLapArray);
@@ -62,6 +66,7 @@ const SearchPage = () => {
   };
 
   const dadosCorrida = winners.map((winner, index) => ({
+    circuitId: circuitId[index],
     winners: formatarNome(winner),
     teams: teams[index],
     fastestLaps: fastestLaps[index],
@@ -90,6 +95,7 @@ const SearchPage = () => {
 
           {dadosCorrida.map((dados, index) => (
             <Card
+              circuitId={dados.circuitId}
               winner={dados.winners}
               team={dados.teams}
               fastestLap={dados.fastestLaps}

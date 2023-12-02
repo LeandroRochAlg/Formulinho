@@ -1,10 +1,15 @@
 import "../styles/components/card.css";
 
-const Card = ({ winner, team, fastestLap, place, onClick }) => {
+const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
   return (
     <>
       <div className="card" onClick={onClick}>
-        <div className="img"></div>
+        <div className="img">
+          <img
+            src={`../assets/img/corridas/${circuitId}.jpg`}
+            alt="Imagem do circuito"
+          />
+        </div>
         <div className="text">
           <ul className="card-list">
             <li>
