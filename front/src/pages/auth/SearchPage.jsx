@@ -12,7 +12,10 @@ const formatarNome = (nome) => {
 };
 
 const SearchPage = () => {
-  const years = [2023, 2022, 2021, 2020, 2019, 2018];
+  const years = [];
+  for (let year = 2023; year >= 2020; year--) {
+    years.push(year);
+  }
 
   const [winners, setWinners] = useState([]);
   const [teams, setTeams] = useState([]);
@@ -27,7 +30,7 @@ const SearchPage = () => {
     setSelectedYear(selectedYear);
 
     const corrida = `https://ergast.com/api/f1/${selectedYear}/results/1.json`;
-    
+
     const response = await fetch(corrida);
     const data = await response.json();
     console.log(data);
@@ -111,26 +114,3 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
-
-
-
-  // const fetchData = async () => {
-  //   const response = await fetch(corrida);
-  //   const data = await response.json();
-  //   const winnerArray = [];
-  //   const teamArray = [];
-  //   const fastestLapArray = [];
-  //   const placeArray = [];
-
-  //   data.MRData.RaceTable.Races.forEach((race) => {
-  //     winnerArray.push(race.Results[0].Driver.driverId);
-  //     teamArray.push(race.Results[0].Constructor.name);
-  //     fastestLapArray.push(race.Results[0].FastestLap.Time.time);
-  //     placeArray.push(race.Circuit.circuitName);
-  //   });
-
-  //   setWinners(winnerArray);
-  //   setTeams(teamArray);
-  //   setFastestLaps(fastestLapArray);
-  //   setPlaces(placeArray);
-  // };
