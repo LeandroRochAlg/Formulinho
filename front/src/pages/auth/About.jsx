@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/auth/aboutcss.css';
+import Coworker from '../../components/Coworker';
+import workers from '../../assets/workers.json';
 
 const About = () => {
+    
     return (
         <div className='abt-body'>
-            <h1>About Us</h1>
-            <p>Welcome to our website! We are a team of passionate individuals dedicated to providing the best solutions for our customers.</p>
+            <div className='abt-body-container'>
+                {workers.map((coworker, index) => (
+                    <Coworker
+                        key={index}
+                        nome={coworker.nome}
+                        cargo={coworker.cargo}
+                        desc={coworker.desc}
+                        img={coworker.img}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
