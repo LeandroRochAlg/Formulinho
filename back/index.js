@@ -121,3 +121,40 @@ app.get('/search/:busca/:ano', async (req, res) => {
     // Retorna corridas
     res.status(201).json(corridasBusca);
 });
+
+// Rota para informações do usuário
+app.get('/user', async (req, res) => {
+    // Busca token
+    const authHeaders = req.headers['authorization'];
+    const token = authHeaders && authHeaders.split(' ')[1];
+    
+    // Se não tiver token, retorna erro
+    if (!token) {
+        return res.status(401).json({ error: 'Não autorizado' });
+    }
+    
+    // Verifica token
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ error: 'Não autorizado' });
+        }
+        
+        // Busca usuário no "banco"
+        const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
+        const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+        const user = usuarios.find((u) => u.id === decoded.id);
+        
+        // Se usuário não existir, retorna erro
+        if (!user) {
+            return res.status(401).json({ error: 'Não autorizado' });
+        }
+
+        const usuarioRet = {
+            username: user.username,
+            email: user.email
+        };
+        
+        // Retorna usuário
+        res.json(usuarioRet);
+    });
+});
