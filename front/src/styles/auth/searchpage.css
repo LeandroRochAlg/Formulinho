@@ -23,7 +23,6 @@
     --main-text-color: #120E10;
 }  
 
-/* Corpo da página */
 .main-body{
     background-color: #ffffff;
     height: 100vh;
@@ -94,7 +93,6 @@
     color: #f4fff8;
 }
 
-
 .filter-container{
     display: flex;
     justify-content: center;
@@ -102,6 +100,7 @@
     align-content: center;
     padding-left: 1vh;
     cursor: pointer;
+    
 }
 
 .filter-year{
@@ -109,7 +108,7 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-content: center; 
     width: 14vh;
     height: 8vh;
     border-radius: 10px;
@@ -118,16 +117,26 @@
     color: #f4fff8; 
     font-size: 1.2rem;
     font-family: 'Titillium Web';
+    text-align: center;
+    outline: none;
+    appearance: none;
 }
 
-.filter-option{
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.filter-year option{
+    background-color: #A60303;
+    color: #f4fff8;
+    font-size: 1.2rem;
+    font-family: 'Titillium Web';
+    text-align: center;
+    outline: none;
+    appearance: none;
 }
 
+select {
+    max-height: 200px;
+    overflow: hidden;
+  }
+  
 .main-content-container{
     background-color: var(--main-accent-color);
     height: 100vh;

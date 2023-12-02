@@ -75,3 +75,86 @@ app.post('/create', async (req, res) => {
     // Retorna usuário
     res.status(201).json({message: 'Usuário criado com sucesso!'});
 });
+
+// Rota para busca de corridas
+app.get('/search/:busca/:ano', async (req, res) => {
+    const params = req.params;
+    const busca = params.busca;
+    
+    // Busca circuitos
+    const circuitos = 'https://ergast.com/api/f1/circuits.json?limit=1000';
+    const response = await fetch(circuitos);
+    const data = await response.json();
+
+    const circuitosBusca = [];
+    const corridasBusca = [];
+
+    //Buscando circuitos
+    data.MRData.CircuitTable.Circuits.forEach((circuito) => {
+        if (circuito.circuitName.toLowerCase().includes(busca.toLowerCase()) || circuito.Location.country.toLowerCase().includes(busca.toLowerCase()) || circuito.Location.locality.toLowerCase().includes(busca.toLowerCase())) {
+            circuitosBusca.push(circuito.circuitId);
+        }
+    });
+    
+    //Se não encontrar circuitos, retorna erro
+    if (circuitosBusca.length === 0) {
+        return res.status(400).json({ error: 'Nenhum circuito encontrado' });
+    }
+
+    // Busca corridas
+    const corridas = `https://ergast.com/api/f1/${params.ano}/results.json?limit=1000`;
+    const responseCor = await fetch(corridas);
+    const dataCor = await responseCor.json();
+
+    //Buscando corridas
+    dataCor.MRData.RaceTable.Races.forEach((corrida) => {
+        if (circuitosBusca.includes(corrida.Circuit.circuitId)) {
+            corridasBusca.push(corrida);
+        }
+    });
+
+    //Se não encontrar corridas, retorna erro
+    if (corridasBusca.length === 0) {
+        return res.status(400).json({ error: 'Nenhuma corrida encontrada' });
+    }
+    
+    // Retorna corridas
+    res.status(201).json(corridasBusca);
+});
+
+// Rota para informações do usuário
+app.get('/user', async (req, res) => {
+    // Busca token
+    const authHeaders = req.headers['authorization'];
+    const token = authHeaders && authHeaders.split(' ')[1];
+    
+    // Se não tiver token, retorna erro
+    if (!token) {
+        return res.status(401).json({ error: 'Não autorizado' });
+    }
+    
+    // Verifica token
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ error: 'Não autorizado' });
+        }
+        
+        // Busca usuário no "banco"
+        const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
+        const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+        const user = usuarios.find((u) => u.id === decoded.id);
+        
+        // Se usuário não existir, retorna erro
+        if (!user) {
+            return res.status(401).json({ error: 'Não autorizado' });
+        }
+
+        const usuarioRet = {
+            username: user.username,
+            email: user.email
+        };
+        
+        // Retorna usuário
+        res.json(usuarioRet);
+    });
+});
