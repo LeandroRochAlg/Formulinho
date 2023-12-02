@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .main-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-family: "Titillium Web";
+    color: #f4fff8;
+    letter-spacing: 0.9px;
+  }
+  
+  .main-list span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #f4fff8;
+    letter-spacing: 0.9px;
+  }
+  
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 0;
+  }
+  
+  .content-img-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .content-img {
+    width: 25vh;
+    height: 25vh;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  .star-rating {
+    width: 25vh;
+    display: flex;
+    direction: rtl;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .star-rating input {
+    display: none;
+  }
+  
+  .star-rating label {
+    display: flex;
+    font-size: 2rem;
+    color: #101010;
+    cursor: pointer;
+    transition: color 0.3s;
+    margin-bottom: 5px;
+  }
+  
+  .star-rating input:checked ~ label,
+  .star-rating input:focus ~ label,
+  .star-rating label:hover,
+  .star-rating input:hover ~ label {
+    color: #deba35;
+  }
+  
+  .star-rating input:checked ~ label {
+    color: #deba35;
+  }
+  
+  .reset-button {
+    display: flex;
+    font-size: 1.09rem;
+  
+    margin-left: 4px;
+    cursor: pointer;
+    color: solid black;
+    background: none;
+    border: none;
+  }
+  

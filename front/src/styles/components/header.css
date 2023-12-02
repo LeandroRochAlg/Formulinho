@@ -1,39 +1,64 @@
+:root{
+    --main-accent-color: #A60303;
+    --secondary-accent-color: #CBCCCC;
+    --tertiary-accent-color: #15151E;
+    --main-text-color: #120E10;
+    --main-bg-color: #E10600;
+}  
+
 .navbar{
-    background-color: #202527;
-    height: 10vh;
+    background-color: var(--main-bg-color);
+    height: 6vh;
     width: 100%;
     top: 0;
     display: flex;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;    
+    position: fixed;
 }
 
-.nav-icon{
-    background-color: #D9D9D9;
-    height: 50px;
-    width: 50px;
-    padding: 2px;
-    border-radius: 10px;
-    margin: 0 auto;
+.nav-itens{
     display: flex;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-right: 10vh;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-#icon{
-    height: 6vh;
-    width: auto;
+.header-list{
+    display: flex;
+    list-style-type: none;
+    text-transform: uppercase;
+    letter-spacing: 5%;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.nav-button-container{
+    background-color: var(--tertiary-accent-color);
+    height: 2rem;
+    min-width: 10rem;
+    max-width: 20rem;
+    padding: 2px;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-right: 5vh;
+    position: relative;
 }
 
 .nav-button{
     background-color: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.username{
+    color: #f4fff8;
+    font-size: 16px;
+    margin-left: 10px;
 }
 
 .Menu {
@@ -41,25 +66,33 @@
     overflow: visible;
 
     list-style-type: none;
-    top: 65px;
+    top: 38px;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 9;
 
-    background-color: #D9D9D9;
+    background-color: var(--tertiary-accent-color);
     border-radius: 5px;
-    width: 75px;
+    min-width: 10rem;
 }
 
 .Menu-item {
     cursor: pointer;
     font-family: 'Titillium Web';
-    font-size: 1.2rem;
-    font-weight: 600;   
+    font-size: 1rem;
+    font-weight: 300;   
 }
 
 .op-item{
-    color: #202527;
+    color: #f4fff8;
     text-decoration: none;
+    transition: 0.3s;
 }
+
+.op-item:hover{
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+

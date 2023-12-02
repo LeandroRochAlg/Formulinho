@@ -1,0 +1,160 @@
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #5c0000;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #A60303;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #8d0000;
+}
+
+:root{
+    --main-bg-color: #272727;
+    --main-accent-color: #A60303;
+    --secondary-accent-color: #747474;
+    --tertiary-accent-color: #393939;
+    --main-text-color: #120E10;
+}  
+
+.main-body{
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 0;
+    display: flex; 
+}
+
+.main-search-container{
+    overflow: scroll;
+    background-color: #272727;
+    height: 100vh;
+    width: 77%;
+    z-index: 0;
+    overflow-x: hidden;
+}
+
+.main-search{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    overflow: hidden;
+}
+
+.search-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.search-bar input{
+    height: 8vh;
+    width: 90vh;
+    border-radius: 10px 0 0 10px;
+    border: none;   
+    margin-right: 0px;
+    padding-left: 3vh;
+    font-size: 1.2rem;
+    font-family: 'Titillium Web';
+    overflow: hidden;
+    background-color: var(--main-accent-color);
+    color: #f4fff8;
+}
+
+.search-bar input::placeholder{
+    color: #f4fff8;
+}
+
+.search-bar input:focus{
+    outline: none;
+}
+
+.search-icon{
+    height: 8vh;
+    width: 10vh;
+    border: none;  
+    border-radius: 0 10px 10px 0;
+    background-color: var(--main-accent-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #f4fff8;
+}
+
+.filter-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 1vh;
+    cursor: pointer;
+    
+}
+
+.filter-year{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    align-content: center; 
+    width: 14vh;
+    height: 8vh;
+    border-radius: 10px;
+    background-color: #A60303;
+    border: none    ;
+    color: #f4fff8; 
+    font-size: 1.2rem;
+    font-family: 'Titillium Web';
+    text-align: center;
+    outline: none;
+    appearance: none;
+}
+
+.filter-year option{
+    background-color: #A60303;
+    color: #f4fff8;
+    font-size: 1.2rem;
+    font-family: 'Titillium Web';
+    text-align: center;
+    outline: none;
+    appearance: none;
+}
+
+select {
+    max-height: 200px;
+    overflow: hidden;
+  }
+  
+.main-content-container{
+    background-color: var(--main-accent-color);
+    height: 100vh;
+    width: 23%;
+    overflow: hidden;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-main{
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+

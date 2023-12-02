@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "username": "jaumzito",
+    "email": "jaum@teste.com.br",
+    "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i"
+  },
+  {
+    "id": 2,
+    "username": "chaves",
+    "email": "chaves@chaves.com",
+    "password": "$2b$10$h3oBYHzyzR/WuW3a8xPGvuzEQbwks/MGXaY5W/ICi3ACWLKhAXwh."
+  },
+  {
+    "id": 3,
+    "username": "hamilton44",
+    "email": "hamilton44@ex.com",
+    "password": "$2b$10$47fxl7kDCYdwhPOEe8OqDO7XbsShzKnyM85Nl5EAg3WOn8YyobtF6"
+  },
+  {
+    "id": 4,
+    "username": "LeandroRochAlg",
+    "email": "leandrochaju@hotmail.com",
+    "password": "$2b$10$AGvIaIt8mhH1IYaf1EvUH.JAYne3VR5iDYJJhintc8/.bDIDeogBa"
+  },
+  {
+    "id": 5,
+    "username": "doug",
+    "email": "doug@gmail.com",
+    "password": "$2b$10$KFipQ4FB3QDIUPraMtbp9OyfrCtiktdJbhZcHTpCHoJX.9SPQ2nV2"
+  },
+  {
+    "id": 6,
+    "username": "Nicolas",
+    "email": "nicolas@gg",
+    "password": "$2b$10$MqQ6oT0mGJ6WKStcg2w3bOUQGgtIzRtI69BC8nJhewbCGktc9ZnXS"
+  },
+  {
+    "id": 7,
+    "username": "",
+    "email": "",
+    "password": "$2b$10$OPuT2.dkbyqy0pSmzm2Yq.eRKtzPB2hZhEFuN0Hs5EJvYSEhGFat6"
+  },
+  {
+    "id": 8,
+    "username": "carlos",
+    "email": "hamilton44@ex.com",
+    "password": "$2b$10$jUFx9Jn3skiZUDyi4xDJcuGg5Yeh1ZlmnooeR9ctohYCSn5T4Hnvm"
+  },
+  {
+    "id": 9,
+    "username": "asd",
+    "email": "asd",
+    "password": "$2b$10$XTLNgC4zLEgg2NN.G6maSuAxMaYgVq/adHJFlNbe0dAcYaskeRFXC"
+  },
+  {
+    "id": 10,
+    "username": "asda",
+    "email": "asd",
+    "password": "$2b$10$YNv5PDmrEeL/wW9LqTAvw.2HREDZS4ThnWLtsI8IUzqLULS8norJu"
+  },
+  {
+    "id": 11,
+    "username": "sainz55",
+    "email": "sainz@ferrari.com",
+    "password": "$2b$10$z3ojYa3PjZ1XPJdJTACjg.mZra6Ki2wo9U0HFHf/JEGEfVajZw.aG"
+  },
+  {
+    "id": 12,
+    "username": "bottas77",
+    "email": "bottas@alfaromeo.com",
+    "password": "$2b$10$xT1ULeX8fm6peOgMsK/cJuhdpVSKbCPZF15ocP.P4O.xoKN09sF.C"
+  },
+  {
+    "id": 13,
+    "username": "AnaKelly",
+    "email": "kelly@gmail.com",
+    "password": "$2b$10$.0XauRWwUDhA5Y8XP64bvOJOhvgC3QkE4KmXLtDpSsI6GB4E4aWDu"
+  }
+]

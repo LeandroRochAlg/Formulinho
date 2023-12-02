@@ -1,12 +1,14 @@
 import {createBrowserRouter} from "react-router-dom";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
-import HomePage from "./pages/auth/HomePage.jsx";
+import SearchPage from "./pages/auth/SearchPage.jsx";
+import HomeScreen from "./pages/auth/HomeScreen.jsx";
+import About from "./pages/auth/About.jsx";
 
 const AppRouters = createBrowserRouter([
     {
         path: "/",
-        element: <LoginPage />
+        element: <HomeScreen />
     },
     { 
         path: "/login",
@@ -17,8 +19,16 @@ const AppRouters = createBrowserRouter([
         element: <RegisterPage />
     },
     {
+        path: "/search",
+        element: <SearchPage />
+    },
+    {
         path: "/home",
-        element: <HomePage />
+        element: <HomeScreen />
+    },
+    {
+        path: "/about",
+        element: <About />
     }
 ]);
 

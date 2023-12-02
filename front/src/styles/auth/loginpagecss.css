@@ -1,7 +1,5 @@
-/* FILEPATH: /c:/Users/Felip/Documents/ppfinal/vite-project/src/styles/auth/LoginPage.css */
-
 /* Background image */
-.page-body{
+.page-body {
   background-image: url("https://i.pinimg.com/originals/4f/e8/e8/4fe8e8401c1a35d35a9ed3900f488685.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,14 +28,14 @@
   color: #fff;
   font-size: 1rem;
   margin-bottom: 20px;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
 }
 
 .link {
-  color: #E10600;
+  color: #e10600;
   font-size: 1rem;
   margin-bottom: 20px;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
   cursor: pointer;
   text-decoration: none;
 }
@@ -57,7 +55,7 @@
   display: block;
   font-size: 17px;
   color: #fff;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
   margin: 0px 40px;
 }
 
@@ -73,22 +71,23 @@
   margin: 0px 40px;
   margin-bottom: 10px;
   padding: 10px 0;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
   width: 304px;
   height: 35px;
 }
 
 .form-field input:focus {
   outline: none;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
 }
 
-.form-field input::placeholder{
+.form-field input::placeholder {
   color: #5f5f5f;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
 }
 
-.form-field input[type="text"], .form-field input[type="password"] {
+.form-field input[type="text"],
+.form-field input[type="password"] {
   padding-left: 10px;
 }
 
@@ -101,7 +100,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #E10600;
+  background-color: #e10600;
   color: #fff;
   border: none;
   height: 35px;
@@ -111,7 +110,7 @@
   letter-spacing: 0.5px;
   line-height: 1;
   font-size: 13px;
-  font-weight: 500  ;
+  font-weight: 500;
   margin: 30px 0;
   cursor: pointer;
   text-transform: uppercase;
@@ -121,4 +120,12 @@
 
 .form-submit button:hover {
   background-color: #cc0000;
+}
+
+.success-message p {
+  color: green;
+}
+
+.error-message p {
+  color: red;
 }
