@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import '../../styles/auth/aboutcss.css';
 import Coworker from '../../components/Coworker';
 import workers from '../../assets/workers.json';
