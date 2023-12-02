@@ -7,7 +7,6 @@ const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
         <div className="img">
           <img
             src={`../assets/img/corridas/${circuitId}.jpg`}
-            alt="Imagem do circuito"
           />
         </div>
         <div className="text">
