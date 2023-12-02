@@ -34,7 +34,6 @@ const SearchPage = () => {
 
     const response = await fetch(corrida);
     const data = await response.json();
-    console.log(data);
 
     const circuitIdArray = [];
     const winnerArray = [];
