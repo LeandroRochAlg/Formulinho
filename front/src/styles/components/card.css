@@ -5,7 +5,7 @@
     align-items: center;
     align-content: center;
     flex-direction: row;
-    width: 110vh;
+    width: 115vh;
     height: 20vh;
     margin: 2vh auto;
     background-color: #A60303;
@@ -86,4 +86,12 @@
     color: white;
     letter-spacing: 0.2vh;
     font-weight: normal;
+}
+
+.race-name {
+    font-size: 3vh;
+    color: white;
+    letter-spacing: 0.3vh;
+    font-weight: bold;
+    font-style: italic;
 }

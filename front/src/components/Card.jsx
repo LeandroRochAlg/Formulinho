@@ -1,6 +1,6 @@
 import "../styles/components/card.css";
 
-const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
+const Card = ({raceName, circuitId, winner, team, fastestLap, place, onClick }) => {
   return (
     <>
       <div className="card" onClick={onClick}>
@@ -12,6 +12,11 @@ const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
         </div>
         <div className="text">
           <ul className="card-list">
+            <li>
+              <p className="race-name">
+                <span>{raceName}</span>{" "}
+              </p>
+            </li>
             <li>
               <p className="card-text">
                 VENCEDOR: <span className="card-span">{winner}</span>{" "}
