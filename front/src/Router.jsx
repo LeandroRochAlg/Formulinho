@@ -4,6 +4,7 @@ import RegisterPage from "./pages/auth/RegisterPage.jsx";
 import SearchPage from "./pages/auth/SearchPage.jsx";
 import HomeScreen from "./pages/auth/HomeScreen.jsx";
 import About from "./pages/auth/About.jsx";
+import ProfilePage from "./pages/auth/ProfilePage.jsx";
 
 const AppRouters = createBrowserRouter([
     {
@@ -29,7 +30,11 @@ const AppRouters = createBrowserRouter([
     {
         path: "/about",
         element: <About />
-    }
+    },
+    {
+        path: "/profile",
+        element: <ProfilePage />
+    },
 ]);
 
 export default AppRouters;

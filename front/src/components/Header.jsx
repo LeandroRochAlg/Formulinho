@@ -18,23 +18,20 @@ const Header = () => {
                     <li> Database </li>
                 </ul>
             </div>
-            <div className="nav-button-container">
-                <button className="nav-button" onClick={handleOpen}>  
-                    <span className="username">hamilton44</span>
-                    <FaChevronDown className="username" style={{fontSize: "1rem", paddingTop: '3px'}}/>  
-                </button> 
-                {open ? (
-                    <ul className="Menu">
-                        <li className="Menu-item">
-                            <Link className="op-item">Perfil</Link>
-                        </li>
-                        <li className="Menu-item">
-                            <Link className="op-item">Sair</Link>
-                        </li>
-                    </ul>
-                ) : null}
-                  
-            </div>
+            <button className="nav-button" onClick={handleOpen}>  
+                <span className="username">hamilton44</span>
+                <FaChevronDown className="username-icon" style={{fontSize: "1rem", paddingTop: '3px'}}/>  
+            </button> 
+            {open ? (
+                <ul className="Menu">
+                    <li className="Menu-item">
+                        <Link className="op-item">Perfil</Link>
+                    </li>
+                    <li className="Menu-item">
+                        <Link className="op-item">Sair</Link>
+                    </li>
+                </ul>
+            ) : null}
         </nav>
     );
     }

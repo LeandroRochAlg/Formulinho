@@ -1,11 +1,12 @@
 import '../../styles/auth/aboutcss.css';
 import Coworker from '../../components/Coworker';
 import workers from '../../assets/workers.json';
+import Header from '../../components/Header';
 
 const About = () => {
     
     return (
-        <div className='abt-body'>
+        <><Header /><div className='abt-body'>
             <div className='abt-body-container'>
                 {workers.map((coworker, index) => (
                     <Coworker
@@ -13,11 +14,10 @@ const About = () => {
                         nome={coworker.nome}
                         cargo={coworker.cargo}
                         desc={coworker.desc}
-                        img={coworker.img}
-                    />
+                        img={coworker.img} />
                 ))}
             </div>
-        </div>
+        </div></>
     );
 }
 
