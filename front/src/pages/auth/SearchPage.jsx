@@ -14,10 +14,11 @@ const formatarNome = (nome) => {
 
 const SearchPage = () => {
   const years = [];
-    for (let year = 2023; year >= 2020; year--) {
+    for (let year = 2023; year >= 1950; year--) {
       years.push(year);
   }
 
+  const [raceName, setRaceName] = useState([]);
   const [circuitId, setCircuitId] = useState([]);
   const [winners, setWinners] = useState([]);
   const [teams, setTeams] = useState([]);
@@ -36,6 +37,7 @@ const SearchPage = () => {
     const response = await fetch(corrida);
     const data = await response.json();
 
+    const raceNameArray = [];
     const circuitIdArray = [];
     const winnerArray = [];
     const teamArray = [];
@@ -43,6 +45,7 @@ const SearchPage = () => {
     const placeArray = [];
 
     data.MRData.RaceTable.Races.forEach((race) => {
+      raceNameArray.push(race.raceName);
       circuitIdArray.push(race.Circuit.circuitId);
       winnerArray.push(race.Results[0].Driver.driverId);
       teamArray.push(race.Results[0].Constructor.name);
@@ -54,6 +57,7 @@ const SearchPage = () => {
       placeArray.push(race.Circuit.circuitName);
     });
 
+    setRaceName(raceNameArray);
     setCircuitId(circuitIdArray);
     setWinners(winnerArray);
     setTeams(teamArray);
@@ -66,6 +70,7 @@ const SearchPage = () => {
   };
 
   const dadosCorrida = winners.map((winner, index) => ({
+    raceName: raceName[index],
     circuitId: circuitId[index],
     winners: formatarNome(winner),
     teams: teams[index],
@@ -96,6 +101,7 @@ const SearchPage = () => {
 
           {dadosCorrida.map((dados, index) => (
             <Card
+              raceName={dados.raceName}
               circuitId={dados.circuitId}
               winner={dados.winners}
               team={dados.teams}

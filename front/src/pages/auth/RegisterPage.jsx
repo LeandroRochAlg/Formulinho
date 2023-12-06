@@ -66,7 +66,7 @@ const RegisterPage = () => {
         <form onSubmit={handleSubmit(submit)} noValidate>
           <div className="form-field">
             <div>
-              <label>Username:</label>
+              <label>Usuário:</label>
               <input
                 type="text"
                 name="username"
@@ -86,7 +86,7 @@ const RegisterPage = () => {
               <p className="erro">{errors.email?.message}</p>
             </div>
             <div>
-              <label>Password:</label>
+              <label>Senha:</label>
               <input
                 type="password"
                 name="password"
@@ -96,7 +96,7 @@ const RegisterPage = () => {
               <p className="erro">{errors.password?.message}</p>
             </div>
             <div>
-              <label>Confirm Password:</label>
+              <label>Confirme a senha:</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -107,7 +107,7 @@ const RegisterPage = () => {
             </div>
           </div>
           <div className="form-submit">
-            <button>REGISTER</button>
+            <button>REGISTRAR</button>
             {msg && (
               <div className={userCriado ? "success-message" : "error-message"}>
                 <p>{msg}</p>

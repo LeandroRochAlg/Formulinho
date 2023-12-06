@@ -44,7 +44,7 @@ const loginPage = () => {
         <form onSubmit={handleSubmit(submit)} noValidate>
           <div className="form-field">
             <div>
-              <label>Username:</label>
+              <label>Usuário:</label>
               <input
                 type="text"
                 name="username"
@@ -54,7 +54,7 @@ const loginPage = () => {
               {errors.username && <p>{errors.username.message}</p>}
             </div>
             <div>
-              <label>Password:</label>
+              <label>Senha:</label>
               <input
                 type="password"
                 name="password"
@@ -65,7 +65,7 @@ const loginPage = () => {
             </div>
           </div>
           <div className="form-submit">
-            <button>LOGIN</button>
+            <button>ENTRAR</button>
             {msg && (
               <div className="error-message">
                 <p>{msg}</p>
