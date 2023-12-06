@@ -14,8 +14,9 @@ const Header = () => {
         <nav className="navbar" >
             <div className="nav-itens">
                 <ul className="header-list">
-                    <li> Home </li>
-                    <li> Database </li>
+                    <li> <Link to="/home"> Início </Link> </li>
+                    <li> <Link to="/search"> Busca </Link> </li>
+                    <li> <Link to="/profile"> Perfil </Link> </li>
                 </ul>
             </div>
             <button className="nav-button" onClick={handleOpen}>  
@@ -24,9 +25,6 @@ const Header = () => {
             </button> 
             {open ? (
                 <ul className="Menu">
-                    <li className="Menu-item">
-                        <Link className="op-item">Perfil</Link>
-                    </li>
                     <li className="Menu-item">
                         <Link className="op-item">Sair</Link>
                     </li>
