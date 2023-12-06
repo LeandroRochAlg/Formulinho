@@ -3,8 +3,10 @@ import Coworker from '../../components/Coworker';
 import workers from '../../assets/workers.json';
 import Header from '../../components/Header';
 
+
+
 const About = () => {
-    
+    document.title = 'Sobre';
     return (
         <><Header /><div className='abt-body'>
             <div className='abt-body-container'>

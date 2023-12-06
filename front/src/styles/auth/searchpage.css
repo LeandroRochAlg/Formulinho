@@ -65,7 +65,7 @@
     border: none;   
     margin-right: 0px;
     padding-left: 3vh;
-    font-size: 1.2rem;
+    font-size: 3vh;
     font-family: 'Titillium Web';
     overflow: hidden;
     background-color: var(--main-accent-color);
@@ -104,7 +104,6 @@
     
 }
 
-
 .filter-year{
     display: flex;
     cursor: pointer;
@@ -117,7 +116,7 @@
     background-color: #A60303;
     border: none;
     color: #f4fff8; 
-    font-size: 1.2rem;
+    font-size: 2.7vh;
     font-family: 'Titillium Web';
     text-align: center;
     outline: none;
@@ -132,7 +131,7 @@
     border: 0;
     background-color: #A60303;
     color: #f4fff8;
-    font-size: 1.2rem;
+    font-size: 3vh;
     font-family: 'Titillium Web';
     text-align: center;
     outline: 0;

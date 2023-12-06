@@ -45,7 +45,7 @@
     width: 75%;
     height: 80%;
     color: #000000;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.2vh;
 }
 
 .card-list{
@@ -57,7 +57,7 @@
     font-size: 1rem;
     text-transform: uppercase;
     color: #f4fff8;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.2vh;
 }
 
 .rating {
@@ -68,11 +68,12 @@
     align-items: flex-end;
     padding-right: 10px;
     height: 100%;
+    font-size: 3vh;
 
 }
 
 .card-text {
-    font-size: 0.9rem;
+    font-size: 2.2vh;
     font-family: 'Inter';
     color: white;
     font-weight: bold;
@@ -81,8 +82,8 @@
 }
 
 .card-span {
-    font-size: 0.9rem;
+    font-size: 2.2vh;
     color: white;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.2vh;
     font-weight: normal;
 }
