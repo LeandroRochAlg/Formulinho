@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/auth/homescreencss.css";
 
+
 const HomeScreen = () => {
   const [lastRaceInfo, setLastRaceInfo] = useState(null);
   const [winner, setWinner] = useState(null);
@@ -26,6 +27,7 @@ const HomeScreen = () => {
   }, []);
 
   return (
+    document.title = "Pagina Inicial",
     <>
       <div className="home-header">
         <header className="home-navbar">

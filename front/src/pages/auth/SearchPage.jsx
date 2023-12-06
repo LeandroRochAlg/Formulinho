@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import RaceDetails from "./components/RaceDetails";
 import Card from "../../components/Card";
 
+
 const formatarNome = (nome) => {
   const nomeFormatado = nome.replace(/_/g, " ").toUpperCase();
   return nomeFormatado;
@@ -13,8 +14,8 @@ const formatarNome = (nome) => {
 
 const SearchPage = () => {
   const years = [];
-  for (let year = 2023; year >= 2020; year--) {
-    years.push(year);
+    for (let year = 2023; year >= 2020; year--) {
+      years.push(year);
   }
 
   const [circuitId, setCircuitId] = useState([]);
@@ -77,6 +78,7 @@ const SearchPage = () => {
   }, []);
 
   return (
+    document.title = "Pesquisar",
     <>
       <Header />
       <div className="main-body">

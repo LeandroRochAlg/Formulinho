@@ -28,6 +28,7 @@ const loginPage = () => {
   };
 
   return (
+    document.title = "Entrar",
     <div className="page-body">
       <div className="form-container">
         <div className="form-header">

@@ -50,6 +50,7 @@ const RegisterPage = () => {
   };
 
   return (
+    document.title = "Registrar",
     <div className="page-body">
       <div className="form-container">
         <div className="form-header">
