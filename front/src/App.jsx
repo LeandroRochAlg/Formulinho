@@ -8,6 +8,9 @@ const App = () => {
   // Check authentication status
   const isAuthenticated = localStorage.getItem("token");
 
+  console.log("fodase");
+
+
   return (
     <Router>
       <Routes>
@@ -15,10 +18,9 @@ const App = () => {
           PrivateRoutes().map((route) => route)
         ) : (
           <>
-            {/* Redirect to login if trying to access private routes */}
             <Route
               path="/system/*"
-              element={<Navigate to="/auth/login" replace />}
+              element={<Navigate to={PublicRoutes().map((route) => route)}/>}
             />
             {PublicRoutes().map((route) => route)}
           </>

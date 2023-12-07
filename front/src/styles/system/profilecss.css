@@ -10,7 +10,7 @@
   }
   
   .button-grid {
-    margin-top: 18%;
+    margin-top: 22%;
     padding: 10vh;
     display: grid;
     grid-template-columns: repeat(1, 3fr);
