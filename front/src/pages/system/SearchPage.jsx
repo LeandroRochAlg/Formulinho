@@ -8,17 +8,43 @@ import Card from "../../components/Card";
 
 // Função para encontrar a volta mais rápida da corrida
 const voltaMaisRapida = (results) => {
-  results.forEach((result) => {
+  for (let i = 0; i < results.length; i++) {
+    const result = results[i];
     try {
       if (result.FastestLap.rank === '1') {
-        console.log(result.FastestLap.Time.time);
-        console.log(result.Driver.driverId);
+        
         return `${result.FastestLap.Time.time} - ${formatarNome(result.Driver.driverId)}`;
       }
     } catch (error) {
       return "Não Aplicável";
     }
-  });
+  }
+  return "Não Aplicável";
+}
+
+const sendRatingToBackend = async (year, round, rating) => {
+  try {
+    const apiUrl = '/avaliar'; 
+    const response = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+  
+      },
+      body: JSON.stringify({ year, round, selectedRating: rating }),
+    });
+
+    if (response.ok) {
+      console.log('Rating enviado com sucesso para o backend!');
+     
+    } else {
+      console.error('Falha ao enviar rating para o backend');
+     
+    }
+  } catch (error) {
+    console.error('Erro ao enviar rating para o backend:', error);
+    
+  }
 };
 
 const formatarNome = (nome) => {
@@ -73,6 +99,7 @@ const SearchPage = () => {
       localityArray.push(race.Circuit.Location.locality);
       if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
         fastestLapArray.push(voltaMaisRapida(race.Results));
+        console.log("fastestLapArray", fastestLapArray);
       } else {
         fastestLapArray.push("Não Aplicável");
       }
@@ -89,6 +116,7 @@ const SearchPage = () => {
 
   const updateRating = (rating) => {
     setSelectedRating(rating);
+    sendRatingToBackend(selectedRace, selectedYear, rating);
   };
 
   const handleCardClick = (race) => {
@@ -110,6 +138,7 @@ const SearchPage = () => {
     fetchData();
   }, []);
 
+ 
   const filteredData = searchValue
     ? dadosCorrida.filter(
         (dados) =>
