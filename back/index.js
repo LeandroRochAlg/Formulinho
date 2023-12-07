@@ -99,9 +99,11 @@ app.post('/create', async (req, res) => {
     // Criptografa senha
     const salt = await bcrypt.genSalt(10);
     const senhaCrypt = await bcrypt.hash(password, salt);
+
+    const ultimoUser = usuarios.slice(-1)[0];
     
     // Cria usuário
-    const user = new User(usuarios[usuarios.length].id + 1, username, email, senhaCrypt);
+    const user = new User(ultimoUser.id + 1, username, email, senhaCrypt);
     
     // Adiciona usuário no "banco"
     usuarios.push(user);
@@ -199,11 +201,12 @@ app.delete('/users', verificaToken, async (req, res) => {
 
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+    const userArquivo = usuarios.find((u) => u.id === user.id);
 
-    console.log(usuarios.indexOf(user));
+    console.log(usuarios.indexOf(userArquivo));
 
     // Deleta usuário
-    usuarios.splice(usuarios.indexOf(user), 1);
+    usuarios.splice(usuarios.indexOf(userArquivo), 1);
     fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
     
     // Retorna confirmação
