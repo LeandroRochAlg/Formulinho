@@ -17,7 +17,7 @@ const SearchPage = () => {
     years.push(year);
   }
 
-
+  const [selectedRating, setSelectedRating] = useState(null);
   const [raceName, setRaceName] = useState([]);
   const [circuitId, setCircuitId] = useState([]);
   const [winners, setWinners] = useState([]);
@@ -72,6 +72,10 @@ const SearchPage = () => {
     setCountries(countryArray);
   };
 
+  const updateRating = (rating) => {
+    setSelectedRating(rating);
+  };
+
   const handleCardClick = (race) => {
     setSelectedRace(race);
   };
@@ -91,7 +95,6 @@ const SearchPage = () => {
     fetchData();
   }, []);
 
-  console.log(selectedYear);
   const filteredData = searchValue
     ? dadosCorrida.filter(
         (dados) =>
@@ -105,6 +108,7 @@ const SearchPage = () => {
       )
     : dadosCorrida;
 
+  console.log(selectedRating);
   return (
     (document.title = "Pesquisar"),
     (
@@ -141,7 +145,10 @@ const SearchPage = () => {
             <div className="content">
               <div className="content-main">
                 <>
-                  <RaceDetails selectedRace={selectedRace} />
+                  <RaceDetails
+                    selectedRace={selectedRace}
+                    onUpdateRating={updateRating}
+                  />
                 </>
               </div>
             </div>

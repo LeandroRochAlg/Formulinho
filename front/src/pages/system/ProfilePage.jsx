@@ -102,7 +102,10 @@ console.log(`cuzinho ${user}`);
         <div className="float" style={{ display: "absolute" }}>
           <grid className="modal">
             <h2>Tem certeza que deseja excluir sua conta?</h2>
-            <p>Todos os seus dados serão apagados e não será possível recuperá-los novamente.</p>
+            <p>
+              Todos os seus dados serão apagados e não será possível
+              recuperá-los novamente.
+            </p>
             <button id="delete">Confirmar</button>
             <button
               onClick={() => {
