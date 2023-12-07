@@ -21,29 +21,32 @@ const voltaMaisRapida = (results) => {
   }
   return "Não Aplicável";
 }
-
-const sendRatingToBackend = async (year, round, rating) => {
+const sendRatingToBackend = async (ano, round, avaliacao) => {
+  const token = localStorage.getItem('token'); // Certifique-se de ajustar isso conforme a necessidade
+  const url = '/avaliar';
+  console.log('Enviando avaliação para o backend', ano, round, avaliacao);
   try {
-    const apiUrl = '/avaliar'; 
-    const response = await fetch(apiUrl, {
-      method: 'PUT',
+    const response = await fetch(url, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-  
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ year, round, selectedRating: rating }),
+      body: JSON.stringify({
+        ano: parseInt(ano), 
+        round: parseInt(round), 
+        avaliacao: parseInt(avaliacao), 
+      }),
     });
 
-    if (response.ok) {
-      console.log('Rating enviado com sucesso para o backend!');
-     
-    } else {
-      console.error('Falha ao enviar rating para o backend');
-     
+    if (!response.ok) {
+      throw new Error('Erro na solicitação ao backend');
     }
+
+    const data = await response.json();
+    console.log(data); // Você pode fazer algo com a resposta do servidor, se necessário
   } catch (error) {
-    console.error('Erro ao enviar rating para o backend:', error);
-    
+    console.error('Erro ao enviar avaliação para o backend', error);
   }
 };
 
@@ -99,7 +102,6 @@ const SearchPage = () => {
       localityArray.push(race.Circuit.Location.locality);
       if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
         fastestLapArray.push(voltaMaisRapida(race.Results));
-        console.log("fastestLapArray", fastestLapArray);
       } else {
         fastestLapArray.push("Não Aplicável");
       }
@@ -116,7 +118,7 @@ const SearchPage = () => {
 
   const updateRating = (rating) => {
     setSelectedRating(rating);
-    sendRatingToBackend(selectedRace, selectedYear, rating);
+    sendRatingToBackend("1", selectedYear, rating);
   };
 
   const handleCardClick = (race) => {
@@ -152,7 +154,6 @@ const SearchPage = () => {
       )
     : dadosCorrida;
 
-  console.log(selectedRating);
   return (
     (document.title = "Pesquisar"),
     (

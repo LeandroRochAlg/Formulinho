@@ -17,7 +17,7 @@ export default function RaceDetails({ selectedRace, onUpdateRating }) {
   };
 
   const handleResetRating = () => {
-    onUpdateRating("100");
+    onUpdateRating("0");
     setRating(null);
   };
 

@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 const PrivateRouter = ({ element, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
-  console.log(isAuthenticated);
+  
 
   return (
   <Routes>
