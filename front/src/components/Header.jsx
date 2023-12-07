@@ -69,6 +69,9 @@ const Header = () => {
           <li className="Menu-item" onClick={logout}>
             <Link className="op-item" >Sair</Link>
           </li>
+          <li className="Menu-item">
+            <Link className="op-item" to="/system/about">Sobre</Link>
+          </li>
         </ul>
       ) : null}
     </nav>

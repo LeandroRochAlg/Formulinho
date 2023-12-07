@@ -10,8 +10,6 @@ const PrivateRoutes = () => {
   const isAuthenticated = !!localStorage.getItem("token");
   const navigate = useNavigate();
 
-  console.log(isAuthenticated);
-
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/auth/login", { replace: true });
