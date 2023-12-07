@@ -2,7 +2,7 @@ import "../../../styles/components/racedetails.css";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import React, { useState } from "react";
 
-export default function RaceDetails({ selectedRace }) {
+export default function RaceDetails({ selectedRace, onUpdateRating }) {
   const { winners, fastestLaps, places, teams, circuitId } = selectedRace || {};
 
   const [rating, setRating] = useState(null);
@@ -10,11 +10,14 @@ export default function RaceDetails({ selectedRace }) {
   const handleRatingChange = (event) => {
     const selectedRating = event.target.value;
     setRating((prevRating) =>
-      prevRating === selectedRating ? null : selectedRating
+      prevRating === selectedRating ? null : selectedRating,
     );
+
+    onUpdateRating(selectedRating);
   };
 
   const handleResetRating = () => {
+    onUpdateRating("100");
     setRating(null);
   };
 
@@ -41,9 +44,7 @@ export default function RaceDetails({ selectedRace }) {
         </li>
         <li className="list-item">
           Volta mais Rápida:{" "}
-          <span>
-            {fastestLaps ? fastestLaps : "Selecione uma corrida"}
-          </span>
+          <span>{fastestLaps ? fastestLaps : "Selecione uma corrida"}</span>
         </li>
         <li className="list-item">
           Corrida: <span> {places ? places : "Selecione uma corrida"} </span>
@@ -53,31 +54,13 @@ export default function RaceDetails({ selectedRace }) {
         <div className="star-rating">
           <input
             type="radio"
-            id="star1"
+            id="star5"
             name="rating"
-            value="1"
-            checked={rating === "1"}
+            value="5"
+            checked={rating === "5"}
             onChange={handleRatingChange}
           />
-          <label htmlFor="star1">&#9733;</label>
-          <input
-            type="radio"
-            id="star2"
-            name="rating"
-            value="2"
-            checked={rating === "2"}
-            onChange={handleRatingChange}
-          />
-          <label htmlFor="star2">&#9733;</label>
-          <input
-            type="radio"
-            id="star3"
-            name="rating"
-            value="3"
-            checked={rating === "3"}
-            onChange={handleRatingChange}
-          />
-          <label htmlFor="star3">&#9733;</label>
+          <label htmlFor="star5">&#9733;</label>
           <input
             type="radio"
             id="star4"
@@ -89,20 +72,36 @@ export default function RaceDetails({ selectedRace }) {
           <label htmlFor="star4">&#9733;</label>
           <input
             type="radio"
-            id="star5"
+            id="star3"
             name="rating"
-            value="5"
-            checked={rating === "5"}
+            value="3"
+            checked={rating === "3"}
             onChange={handleRatingChange}
           />
-          <label htmlFor="star5">&#9733;</label>
+          <label htmlFor="star3">&#9733;</label>
+          <input
+            type="radio"
+            id="star2"
+            name="rating"
+            value="2"
+            checked={rating === "2"}
+            onChange={handleRatingChange}
+          />
+          <label htmlFor="star2">&#9733;</label>
+          <input
+            type="radio"
+            id="star1"
+            name="rating"
+            value="1"
+            checked={rating === "1"}
+            onChange={handleRatingChange}
+          />
+          <label htmlFor="star1">&#9733;</label>
         </div>
       )}
       {rating !== null && (
         <button className="reset-button" onClick={handleResetRating}>
-          <FaRegCircleXmark
-            style={{ fontSize: "1.2rem", color: "white" }}
-          />
+          <FaRegCircleXmark style={{ fontSize: "1.2rem", color: "white" }} />
         </button>
       )}
     </div>
