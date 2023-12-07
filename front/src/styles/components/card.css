@@ -1,3 +1,4 @@
+/* Estilos do Cartão */
 .card {
     cursor: pointer;
     display: flex;
@@ -5,7 +6,7 @@
     align-items: center;
     align-content: center;
     flex-direction: row;
-    width: 115vh;
+    width: 110vh;
     height: 20vh;
     margin: 2vh auto;
     background-color: #A60303;
@@ -19,6 +20,7 @@
     color: yellow;
 }
 
+/* Estilos da Imagem no Cartão */
 .img {
     display: flex;
     justify-content: center;
@@ -30,13 +32,13 @@
     margin: auto 10px auto 10px ;
 }
 
-.img img{
+.img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-
+/* Estilos do Texto no Cartão */
 .text {
     display: flex;
     flex-direction: column;
@@ -48,7 +50,8 @@
     letter-spacing: 0.2vh;
 }
 
-.card-list{
+/* Estilos da Lista de Cartões */
+.card-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,6 +63,7 @@
     letter-spacing: 0.2vh;
 }
 
+/* Estilos da Avaliação no Cartão */
 .rating {
     display: flex;
     flex: 1;
@@ -69,9 +73,9 @@
     padding-right: 10px;
     height: 100%;
     font-size: 3vh;
-
 }
 
+/* Estilos do Texto Geral no Cartão */
 .card-text {
     font-size: 2.2vh;
     font-family: 'Inter';
@@ -81,17 +85,10 @@
     font-style: uppercase;
 }
 
+/* Estilos do Span no Cartão */
 .card-span {
     font-size: 2.2vh;
     color: white;
     letter-spacing: 0.2vh;
     font-weight: normal;
-}
-
-.race-name {
-    font-size: 3vh;
-    color: white;
-    letter-spacing: 0.3vh;
-    font-weight: bold;
-    font-style: italic;
 }

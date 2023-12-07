@@ -49,7 +49,7 @@ const loginPage = () => {
                 type="text"
                 name="username"
                 placeholder="hamilton44"
-                {...register("username", { required: "Username is required" })}
+                {...register("username", { required: "Usuário é necessário" })}
               />
               {errors.username && <p>{errors.username.message}</p>}
             </div>
@@ -59,7 +59,7 @@ const loginPage = () => {
                 type="password"
                 name="password"
                 placeholder="********"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", { required: "Senha é necessária" })}
               />
               {errors.password && <p>{errors.password.message}</p>}
             </div>
