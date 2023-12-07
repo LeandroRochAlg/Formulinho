@@ -13,9 +13,28 @@ const Header = () => {
   const isAuthenticated = localStorage.getItem("token");
 
 
-  const logout = async (e) => {
-    e.preventDefault();
-    
+  const isTokenValid = (token) => {
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+      return Date.now() < expirationTime;
+    } catch (error) {
+      return false; // Handle invalid token or decoding errors
+    }
+  };
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!isTokenValid(token)) {
+      navigate('/auth/login');
+      return;
+    }
+
     try {
       const response = await api.post("/logout");
       setMsg(response.message);
@@ -66,7 +85,7 @@ const Header = () => {
       </button>
       {open ? (
         <ul className="Menu">
-          <li className="Menu-item" onClick={logout}>
+          <li className="Menu-item" onClick={handleLogout}>
             <Link className="op-item" >Sair</Link>
           </li>
           <li className="Menu-item">
