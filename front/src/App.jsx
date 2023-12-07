@@ -1,20 +1,31 @@
+// App.jsx
 import React from "react";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import PrivateRoutes from "./routers/PrivateRoutes";
-import PublicRoutes from "./routers/PublicRoutes";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import PublicRoutes from "./routers/PublicRoutes.jsx";
+import PrivateRoutes from "./routers/PrivateRoutes.jsx";
 
-function App() {
+const App = () => {
+  // Check authentication status
+  const isAuthenticated = localStorage.getItem("token");
+
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/system/*" element={<PrivateRoutes />} />
-          <Route path="/auth/*" element={<PublicRoutes />} />
-          <Route path="/*" element={<PublicRoutes />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        {isAuthenticated ? (
+          PrivateRoutes().map((route) => route)
+        ) : (
+          <>
+            {/* Redirect to login if trying to access private routes */}
+            <Route
+              path="/system/*"
+              element={<Navigate to="/auth/login" replace />}
+            />
+            {PublicRoutes().map((route) => route)}
+          </>
+        )}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

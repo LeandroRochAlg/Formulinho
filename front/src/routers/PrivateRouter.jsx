@@ -1,19 +1,19 @@
-// PrivateRouter.jsx
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 
 const PrivateRouter = ({ element, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
   
 
   return (
-  <Routes>
     <Route
       {...rest}
-      element={isAuthenticated ? (element) : (<Navigate to="/login" replace state={{ from: rest.location }} />
+      element={isAuthenticated ? (
+        element
+      ) : (
+        <Navigate to="/login" replace state={{ from: rest.location }} />
       )}
     />
-  </Routes>
   );
 };
 
