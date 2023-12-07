@@ -6,6 +6,21 @@ import React, { useState, useEffect } from "react";
 import RaceDetails from "../auth/components/RaceDetails";
 import Card from "../../components/Card";
 
+// Função para encontrar a volta mais rápida da corrida
+const voltaMaisRapida = (results) => {
+  results.forEach((result) => {
+    try {
+      if (result.FastestLap.rank === '1') {
+        console.log(result.FastestLap.Time.time);
+        console.log(result.Driver.driverId);
+        return `${result.FastestLap.Time.time} - ${formatarNome(result.Driver.driverId)}`;
+      }
+    } catch (error) {
+      return "Não Aplicável";
+    }
+  });
+};
+
 const formatarNome = (nome) => {
   const nomeFormatado = nome.replace(/_/g, " ").toUpperCase();
   return nomeFormatado;
@@ -34,7 +49,7 @@ const SearchPage = () => {
     const selectedYear = event?.target?.value || 2023;
     setSelectedYear(selectedYear);
 
-    const corrida = `https://ergast.com/api/f1/${selectedYear}/results/1.json`;
+    const corrida = `https://ergast.com/api/f1/${selectedYear}/results.json?limit=1000`;
 
     const response = await fetch(corrida);
     const data = await response.json();
@@ -57,7 +72,7 @@ const SearchPage = () => {
       raceNameArray.push(race.raceName);
       localityArray.push(race.Circuit.Location.locality);
       if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
-        fastestLapArray.push(race.Results[0].FastestLap.Time.time);
+        fastestLapArray.push(voltaMaisRapida(race.Results));
       } else {
         fastestLapArray.push("Não Aplicável");
       }
