@@ -17,6 +17,41 @@ app.listen(3000, () => {
 
 const User = require('./model/User');
 
+// Middleware para verificação de token
+const verificaToken = (req, res, next) => {
+    // Busca token
+    const authHeaders = req.headers['authorization'];
+    const token = authHeaders && authHeaders.split(' ')[1];
+  
+    // Se não tiver token, retorna erro
+    if (!token) {
+      return res.status(401).json({ error: 'Não autorizado' });
+    }
+  
+    // Verifica token
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ error: 'Não autorizado' });
+      }
+  
+      // Busca usuário no "banco"
+      const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');
+      const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+      const user = usuarios.find((u) => u.id === decoded.id);
+  
+      // Se usuário não existir, retorna erro
+      if (!user) {
+        return res.status(401).json({ error: 'Não autorizado' });
+      }
+  
+      // Adiciona informações do usuário ao objeto de solicitação para uso posterior nas rotas
+      req.user = user;
+  
+      // Chama a próxima função middleware na cadeia
+      next();
+    });
+};  
+
 // Rota para login
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -66,7 +101,7 @@ app.post('/create', async (req, res) => {
     const senhaCrypt = await bcrypt.hash(password, salt);
     
     // Cria usuário
-    const user = new User(usuarios.length + 1, username, email, senhaCrypt);
+    const user = new User(usuarios[usuarios.length].id + 1, username, email, senhaCrypt);
     
     // Adiciona usuário no "banco"
     usuarios.push(user);
@@ -76,122 +111,78 @@ app.post('/create', async (req, res) => {
     res.status(201).json({message: 'Usuário criado com sucesso!'});
 });
 
-// Rota para busca de corridas
-app.get('/search/:busca/:ano', async (req, res) => {
-    const params = req.params;
-    const busca = params.busca;
-    
-    // Busca circuitos
-    const circuitos = 'https://ergast.com/api/f1/circuits.json?limit=1000';
-    const response = await fetch(circuitos);
-    const data = await response.json();
-
-    const circuitosBusca = [];
-    const corridasBusca = [];
-
-    //Buscando circuitos
-    data.MRData.CircuitTable.Circuits.forEach((circuito) => {
-        if (circuito.circuitName.toLowerCase().includes(busca.toLowerCase()) || circuito.Location.country.toLowerCase().includes(busca.toLowerCase()) || circuito.Location.locality.toLowerCase().includes(busca.toLowerCase())) {
-            circuitosBusca.push(circuito.circuitId);
-        }
-    });
-    
-    //Se não encontrar circuitos, retorna erro
-    if (circuitosBusca.length === 0) {
-        return res.status(400).json({ error: 'Nenhum circuito encontrado' });
-    }
-
-    // Busca corridas
-    const corridas = `https://ergast.com/api/f1/${params.ano}/results.json?limit=1000`;
-    const responseCor = await fetch(corridas);
-    const dataCor = await responseCor.json();
-
-    //Buscando corridas
-    dataCor.MRData.RaceTable.Races.forEach((corrida) => {
-        if (circuitosBusca.includes(corrida.Circuit.circuitId)) {
-            corridasBusca.push(corrida);
-        }
-    });
-
-    //Se não encontrar corridas, retorna erro
-    if (corridasBusca.length === 0) {
-        return res.status(400).json({ error: 'Nenhuma corrida encontrada' });
-    }
-    
-    // Retorna corridas
-    res.status(201).json(corridasBusca);
-});
-
 // Rota para informações do usuário
-app.get('/user', async (req, res) => {
-    // Busca token
-    const authHeaders = req.headers['authorization'];
-    const token = authHeaders && authHeaders.split(' ')[1];
+app.get('/users', verificaToken, async (req, res) => {   
+    const user = req.user;
     
-    // Se não tiver token, retorna erro
-    if (!token) {
-        return res.status(401).json({ error: 'Não autorizado' });
-    }
+    const usuarioRet = {
+        username: user.username,
+        email: user.email
+    };
     
-    // Verifica token
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ error: 'Não autorizado' });
-        }
-        
-        // Busca usuário no "banco"
-        const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
-        const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
-        const user = usuarios.find((u) => u.id === decoded.id);
-        
-        // Se usuário não existir, retorna erro
-        if (!user) {
-            return res.status(401).json({ error: 'Não autorizado' });
-        }
-
-        const usuarioRet = {
-            username: user.username,
-            email: user.email
-        };
-        
-        // Retorna usuário
-        res.json(usuarioRet);
-    });
+    // Retorna usuário
+    res.json(usuarioRet);
 });
 
-// Rota para atualização de usuário
-app.put('/user', async (req, res) => {
-    // Busca token
-    const authHeaders = req.headers['authorization'];
-    const token = authHeaders && authHeaders.split(' ')[1];
-    
-    // Se não tiver token, retorna erro
-    if (!token) {
-        return res.status(401).json({ error: 'Não autorizado' });
-    }
-    
-    // Verifica token
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ error: 'Não autorizado' });
-        }
-        
-        // Busca usuário no "banco"
-        const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
-        const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
-        const user = usuarios.find((u) => u.id === decoded.id);
-        
-        // Se usuário não existir, retorna erro
-        if (!user) {
-            return res.status(401).json({ error: 'Não autorizado' });
-        }
+// Rota para atualização de usuário (username e email)
+app.put('/users', verificaToken, async (req, res) => {
+    const user = req.user;
 
-        // Atualiza usuário
-        user.username = req.body.username;
-        user.email = req.body.email;
-        fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
-        
-        // Retorna usuário
-        res.json(user);
-    });
+    const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
+    const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+
+    // Atualiza usuário
+    user.username = req.body.username;
+    user.email = req.body.email;
+    fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
+    
+    // Retorna usuário
+    res.json(user);
+});
+
+// Rota para atualização de senha
+app.put('/users/password', verificaToken, async (req, res) => {
+    const user = req.user;
+
+    const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
+    const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+
+    // Verifica senha atual
+    const passwordValidado = await bcrypt.compare(req.body.password, user.password);
+    
+    // Se senha não bater, retorna erro
+    if (!passwordValidado) {
+        return res.status(401).json({ error: 'Senha inválida' });
+    }
+
+    // Verifica a confirmação da nova senha
+    if (req.body.newPassword !== req.body.confirmPassword) {
+        return res.status(401).json({ error: 'Confirmação de senha inválida' });
+    }
+
+    // Criptografa nova senha
+    const salt = await bcrypt.genSalt(10);
+    const senhaCrypt = await bcrypt.hash(req.body.newPassword, salt);
+
+    // Atualiza usuário
+    user.password = senhaCrypt;
+    fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
+    
+    // Retorna usuário
+    res.json(user);
+});
+
+// Rota para deletar usuário
+app.delete('/users', verificaToken, async (req, res) => {
+    const user = req.user;
+
+    const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
+    const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+
+    // Deleta usuário
+    usuarios.splice(usuarios.indexOf(user), 1);
+    fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
+    
+    // Retorna confirmação
+    res.json({message: 'Usuário apagado com sucesso!'});
 });
