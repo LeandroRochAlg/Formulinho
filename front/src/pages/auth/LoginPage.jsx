@@ -22,7 +22,7 @@ const loginPage = () => {
       const response = await api.post("/login", data);
       setMsg(response.data);
       localStorage.setItem("token", response.data.token);
-      nav("/search");
+      nav("/system/search");
     } catch (error) {
       setMsg(error.response.data.error);
     }
@@ -74,7 +74,7 @@ const loginPage = () => {
             )}
             <p>
               Não tem conta?
-              <Link to={"/register"} className="link">
+              <Link to={"/auth/register"} className="link">
                 {" "}
                 Registre-se.
               </Link>

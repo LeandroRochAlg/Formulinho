@@ -6,7 +6,7 @@ import RegisterPage from "../pages/auth/RegisterPage.jsx";
 const PublicRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/home" element={<HomeScreen />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
         </Routes>

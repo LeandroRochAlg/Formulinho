@@ -26,9 +26,9 @@ const Header = () => {
         <nav className="navbar" >
             <div className="nav-itens">
                 <ul className="header-list">
-                    <li> <Link to="/home"> Início </Link> </li>
-                    <li> <Link to="/search"> Busca </Link> </li>
-                    <li> <Link to="/profile"> Perfil </Link> </li>
+                    <li> <Link to="/auth/home"> Início </Link> </li>
+                    <li> <Link to="/system/search"> Busca </Link> </li>
+                    <li> <Link to="/system/profile"> Perfil </Link> </li>
                 </ul>
             </div>
             <button className="nav-button" onClick={handleOpen}>  

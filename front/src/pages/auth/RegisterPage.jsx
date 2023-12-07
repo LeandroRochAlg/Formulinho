@@ -115,7 +115,7 @@ const RegisterPage = () => {
             )}
             <p>
               Já tem conta?
-              <Link to={"/login"} className="link">
+              <Link to={"/auth/login"} className="link">
                 {" "}
                 Faça login.
               </Link>

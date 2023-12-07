@@ -1,3 +1,11 @@
+:root {
+    --main-accent-color: #A60303;
+    --secondary-accent-color: #CBCCCC;
+    --tertiary-accent-color: #15151E;
+    --main-text-color: #120E10;
+    --main-bg-color: #E10600;
+}
+
 *{
     margin: 0;
     padding: 0;

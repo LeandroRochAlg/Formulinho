@@ -35,7 +35,7 @@ const HomeScreen = () => {
             <ul className="home-header-list">
               <li>
                 {" "}
-                <Link to="/login"> Entrar </Link>{" "}
+                <Link to="/auth/login"> Entrar </Link>{" "}
               </li>
             </ul>
           </div>

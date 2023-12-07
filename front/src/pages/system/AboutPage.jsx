@@ -1,4 +1,4 @@
-import '../../styles/auth/aboutcss.css';
+import '../../styles/system/aboutcss.css';
 import Coworker from '../../components/Coworker';
 import workers from '../../assets/workers.json';
 import Header from '../../components/Header';

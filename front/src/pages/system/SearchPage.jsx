@@ -1,4 +1,4 @@
-import "../../styles/auth/searchpage.css";
+import "../../styles/system/searchpage.css";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import Filter from "../../components/Filter";

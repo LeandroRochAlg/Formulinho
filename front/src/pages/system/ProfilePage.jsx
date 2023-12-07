@@ -1,10 +1,38 @@
 import React from "react";
 import Header from "../../components/Header";
-import { useState } from "react";
-import "../../styles/auth/profilecss.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import api from "../../libs/api";
+
+
+import "../../styles/system/profilecss.css";
 
 const ProfilePage = () => {
   const [open, setOpen] = useState(false);
+
+  const nav = useNavigate();
+
+  const [msg, setMsg] = useState(" ");
+
+  const form = useForm();
+
+  const { register, handleSubmit, formState } = form;
+
+  const { errors } = formState;
+
+  const submit = async (data) => {
+    console.log("Data submitted:", data);
+
+    try {
+      const response = await api.put("/users", data);
+      setMsg(response.data);
+      localStorage.setItem("token", response.data.token);
+      nav("/system/search");
+    } catch (error) {
+      setMsg(error.response.data.error);
+    }
+  };
 
   return (
     <>
@@ -12,12 +40,28 @@ const ProfilePage = () => {
       <div className="profile-body">
         <div className="button-grid">
           <section>
-            <form>
+            <form onSubmit={handleSubmit(submit)}>
               <h2>Alterar Nome</h2>
               <p>Alterar informações básicas do perfil</p>
-              <input type="text" placeholder="Usuário" />
-              <input type="email" placeholder="Email" />
+              <input
+                type="text"
+                name="username"
+                placeholder="Usuário"
+                {...register("username")}
+              />
+              {errors.username && <p>{errors.username.message}</p>}
+              <input 
+                type="email" 
+                placeholder="Email" 
+                {...register("email")}
+              />
+              {errors.username && <p>{errors.username.message}</p>}
               <button>Atualizar</button>
+              {msg && (
+              <div className="error-message">
+                <p>{msg}</p>
+              </div>
+              )}
             </form>
           </section>
           <section>
