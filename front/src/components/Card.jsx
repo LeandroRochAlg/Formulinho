@@ -6,7 +6,7 @@ const Card = ({raceName, circuitId, winner, team, fastestLap, place, onClick }) 
       <div className="card" onClick={onClick}>
         <div className="img">
           <img
-            src={`img/corridas/${circuitId}.jpg`}
+            src={`../img/corridas/${circuitId}.jpg`}
             alt="Imagem do circuito"
           />
         </div>

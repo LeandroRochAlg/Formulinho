@@ -117,3 +117,13 @@
     background-color: #303030;
     color: #fff;
 }
+
+.error-profile {
+    z-index: 100;
+}
+
+.error-profile p{
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}

@@ -1,38 +1,49 @@
 import React from "react";
 import Header from "../../components/Header";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useEffect, useRef } from "react";
 import api from "../../libs/api";
-
-
 import "../../styles/system/profilecss.css";
 
 const ProfilePage = () => {
+
+  const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
-
-  const nav = useNavigate();
-
   const [msg, setMsg] = useState(" ");
 
-  const form = useForm();
+  const username = useRef(null);
+  const email = useRef(null);
 
-  const { register, handleSubmit, formState } = form;
-
-  const { errors } = formState;
-
-  const submit = async (data) => {
+  const updateInfo = (e) => {
+    e.preventDefault();
+    const data = {
+      username: username.current.value,
+      email: email.current.value,
+    };
     console.log("Data submitted:", data);
+    api.put("/users", data).then((response) => setMsg(response.data.message));
+    // try {
+    //   const response = api.put("/users", data);
+    //   console.log(response.data);
+    //   setMsg(response.data.message);
+    // } catch (error) {
+    //   console.log(error.response.data.error);
+    //   setMsg(error.response.data.error);
+    // }
+  };
 
+useEffect(() => {
+  const fetchUser = async () => {
     try {
-      const response = await api.put("/users", data);
-      setMsg(response.data);
-      localStorage.setItem("token", response.data.token);
-      nav("/system/search");
+      const response = await api.get("/users");
+      setUser(response.data);
     } catch (error) {
-      setMsg(error.response.data.error);
     }
   };
+
+  fetchUser();
+}, []);
+
+console.log(`cuzinho ${user}`);
 
   return (
     <>
@@ -40,25 +51,24 @@ const ProfilePage = () => {
       <div className="profile-body">
         <div className="button-grid">
           <section>
-            <form onSubmit={handleSubmit(submit)}>
+            <form onSubmit={updateInfo}>
               <h2>Alterar Nome</h2>
               <p>Alterar informações básicas do perfil</p>
               <input
                 type="text"
                 name="username"
-                placeholder="Usuário"
-                {...register("username")}
+                ref={username}
+                required
               />
-              {errors.username && <p>{errors.username.message}</p>}
               <input 
                 type="email" 
-                placeholder="Email" 
-                {...register("email")}
+                name="email"
+                ref={email}
+                required
               />
-              {errors.username && <p>{errors.username.message}</p>}
               <button>Atualizar</button>
               {msg && (
-              <div className="error-message">
+              <div className="error-profile">
                 <p>{msg}</p>
               </div>
               )}

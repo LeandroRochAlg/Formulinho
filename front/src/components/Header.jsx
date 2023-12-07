@@ -15,12 +15,10 @@ const Header = () => {
     };
 
     const fetchUser = async () => {
-        api.get("/user").then((response) => setUser(response.data));
+        api.get("/users").then((response) => setUser(response.data));
     };    
 
     useEffect(() => {fetchUser()}, []);
-
-    console.log(user);
 
     return (
         <nav className="navbar" >

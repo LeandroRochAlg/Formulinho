@@ -13,7 +13,7 @@ const PrivateRouter = ({ element, ...rest }) => {
       element={isAuthenticated ? (
         element
       ) : (
-        <Navigate to="/login" replace state={{ from: rest.location }} />
+        <Navigate to="/auth/login" replace state={{ from: rest.location }} />
       )}
     />
   </Routes>
