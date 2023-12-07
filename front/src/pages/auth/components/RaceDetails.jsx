@@ -3,7 +3,7 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 import React, { useState } from "react";
 
 export default function RaceDetails({ selectedRace, onUpdateRating }) {
-  const { winners, fastestLaps, places, teams, circuitId } = selectedRace || {};
+  const { winners, round, fastestLaps, places, teams, circuitId } = selectedRace || {};
 
   const [rating, setRating] = useState(null);
 
@@ -13,7 +13,7 @@ export default function RaceDetails({ selectedRace, onUpdateRating }) {
       prevRating === selectedRating ? null : selectedRating,
     );
 
-    onUpdateRating(selectedRating);
+    onUpdateRating(selectedRating, round);
   };
 
   const handleResetRating = () => {

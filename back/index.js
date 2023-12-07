@@ -277,6 +277,9 @@ app.get('/avaliacoes', async (req, res) => {
     const corridas = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
     const corridaArquivo = corridas.find((c) => c.ano === req.body.ano && c.round === req.body.round);
 
+    console.log(req.body.ano);
+    console.log(req.body.round);
+
     // Verifica se corrida existe
     if (!corridaArquivo) {
         return res.json({ media: 0 });

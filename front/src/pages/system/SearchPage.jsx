@@ -8,70 +8,6 @@ import Card from "../../components/Card";
 import api from "../../libs/api";
 import { set } from "react-hook-form";
 
-// Função para encontrar a volta mais rápida da corrida
-const voltaMaisRapida = (results) => {
-  for (let i = 0; i < results.length; i++) {
-    const result = results[i];
-    try {
-      if (result.FastestLap.rank === '1') {
-        
-        return `${result.FastestLap.Time.time} - ${formatarNome(result.Driver.driverId)}`;
-      }
-    } catch (error) {
-      return "Não Aplicável";
-    }
-  }
-  return "Não Aplicável";
-}
-
-// Pegar a avaliação da corrida passada por parâmetro e enviar para o backend
-const getRatingFromBackend = async (ano, round) => {
-  const data = {
-    ano: ano,
-    round: round
-  }
-
-  api.get(`/avaliacoes`, {params: data}).then((response) => {
-    setMediaEstrelas(response.data.media);
-  }).catch((error) => {
-    console.error('Error during getRatingFromBackend:', error);
-  });
-};
-
-const sendRatingToBackend = async (ano, round, avaliacao) => {
-  const token = localStorage.getItem('token'); // Certifique-se de ajustar isso conforme a necessidade
-  const url = '/avaliar';
-  console.log('Enviando avaliação para o backend', ano, round, avaliacao);
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        ano: ano, 
-        round: round, 
-        avaliacao: avaliacao, 
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro na solicitação ao backend');
-    }
-
-    const data = await response.json();
-    console.log(data); // Você pode fazer algo com a resposta do servidor, se necessário
-  } catch (error) {
-    console.error('Erro ao enviar avaliação para o backend', error);
-  }
-};
-
-const formatarNome = (nome) => {
-  const nomeFormatado = nome.replace(/_/g, " ").toUpperCase();
-  return nomeFormatado;
-};
-
 const SearchPage = () => {
   const years = [];
   for (let year = 2023; year >= 1950; year--) {
@@ -91,6 +27,56 @@ const SearchPage = () => {
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedYear, setSelectedYear] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [Rounds, setRounds] = useState("");
+
+  // Função para encontrar a volta mais rápida da corrida
+  const voltaMaisRapida = (results) => {
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
+      try {
+        if (result.FastestLap.rank === '1') {
+          
+          return `${result.FastestLap.Time.time} - ${formatarNome(result.Driver.driverId)}`;
+        }
+      } catch (error) {
+        return "Não Aplicável";
+      }
+    }
+    return "Não Aplicável";
+  }
+
+  // Pegar a avaliação da corrida passada por parâmetro e enviar para o backend
+  const getRatingFromBackend = async (ano, round) => {
+    const data = {
+      ano: ano,
+      round: round
+    }
+
+    api.get(`/avaliacoes`, data).then((response) => {
+      setMediaEstrelas(response.data.media);
+    }).catch((error) => {
+      console.error('Error during getRatingFromBackend:', error);
+    });
+  };
+
+  const sendRatingToBackend = async (ano, round, avaliacao) => {
+    const data = {
+      ano: ano,
+      round: round,
+      avaliacao: avaliacao
+    }
+
+    api.post(`/avaliar`, data).then((response) => {
+      console.log(response.data);
+    }).catch((error) => {
+      console.error('Error during sendRatingToBackend:', error);
+    });
+  };
+
+  const formatarNome = (nome) => {
+    const nomeFormatado = nome.replace(/_/g, " ").toUpperCase();
+    return nomeFormatado;
+  };
 
   const fetchData = async (event) => {
     const selectedYear = event?.target?.value || 2023;
@@ -102,6 +88,7 @@ const SearchPage = () => {
     const data = await response.json();
 
     const circuitIdArray = [];
+    const roundArray = [];
     const winnerArray = [];
     const teamArray = [];
     const fastestLapArray = [];
@@ -110,6 +97,7 @@ const SearchPage = () => {
     const countryArray = [];
     const raceNameArray = [];
     const mediaEstrelasArray = [];
+    
 
     data.MRData.RaceTable.Races.forEach((race) => {
       circuitIdArray.push(race.Circuit.circuitId);
@@ -119,6 +107,7 @@ const SearchPage = () => {
       countryArray.push(race.Circuit.Location.country);
       raceNameArray.push(race.raceName);
       localityArray.push(race.Circuit.Location.locality);
+      roundArray.push(race.round);
       if (race.Results[0].FastestLap && race.Results[0].FastestLap.Time) {
         fastestLapArray.push(voltaMaisRapida(race.Results));
       } else {
@@ -134,12 +123,13 @@ const SearchPage = () => {
     setPlaces(placeArray);
     setLocalities(localityArray);
     setCountries(countryArray);
+    setRounds(roundArray);
     //setMediaEstrelas(mediaEstrelasArray);
   };
 
-  const updateRating = (rating) => {
+  const updateRating = (rating, round) => {
     setSelectedRating(rating);
-    sendRatingToBackend("1", selectedYear, rating);
+    sendRatingToBackend(selectedYear, round, rating);
   };
 
   const handleCardClick = (race) => {
@@ -148,6 +138,7 @@ const SearchPage = () => {
 
   const dadosCorrida = winners.map((winner, index) => ({
     circuitId: circuitId[index],
+    round: Rounds[index],
     winners: formatarNome(winner),
     teams: teams[index],
     fastestLaps: fastestLaps[index],
@@ -160,9 +151,12 @@ const SearchPage = () => {
 
   useEffect(() => {
     fetchData();
-    getRatingFromBackend("2023", "1");
-  }, [console.log("Avaliação: ", mediaEstrelas)]);
+    const ano = 2023;
+    const round = 1;
+    getRatingFromBackend(ano, round);
+  }, []);
 
+  console.log("Avaliação: ", mediaEstrelas);
  
   const filteredData = searchValue
     ? dadosCorrida.filter(
@@ -199,6 +193,7 @@ const SearchPage = () => {
             {filteredData.map((dados, index) => (
               <Card
                 raceName={dados.raceName}
+                raceRound={dados.round}
                 circuitId={dados.circuitId}
                 winner={dados.winners}
                 team={dados.teams}

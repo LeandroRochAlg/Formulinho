@@ -2,6 +2,7 @@ import "../styles/components/card.css";
 
 const Card = ({
   raceName,
+  raceRound,
   circuitId,
   winner,
   team,
@@ -45,6 +46,11 @@ const Card = ({
             <li>
               <p className="card-text">
                 LOCAL DA PROVA: <span className="card-span">{place}</span>
+              </p>
+            </li>
+            <li style={{display:"none"}}>
+              <p className="card-text">
+                RODADA: <span className="card-span">{raceRound}</span>
               </p>
             </li>
           </ul>

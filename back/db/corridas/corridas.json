@@ -66,5 +66,31 @@
         "nota": "3"
       }
     ]
+  },
+  {
+    "ano": "1",
+    "round": 2023,
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": 4,
+        "nota": "4"
+      },
+      {
+        "id": 2,
+        "idUsuario": 4,
+        "nota": "3"
+      },
+      {
+        "id": 3,
+        "idUsuario": 4,
+        "nota": "3"
+      },
+      {
+        "id": 4,
+        "idUsuario": 4,
+        "nota": "5"
+      }
+    ]
   }
 ]
