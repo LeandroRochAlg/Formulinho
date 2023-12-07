@@ -1,6 +1,6 @@
 import "../styles/components/header.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa6";
 import { useState, useEffect } from "react";
 import api from "../libs/api";
@@ -9,14 +9,25 @@ const Header = () => {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState(" ");
+  const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem("token");
 
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    api.post("/logout").then((response) => setMsg(response.message));
-    console.log(msg);
+    
+    try {
+      const response = await api.post("/logout");
+      setMsg(response.message);
+      
+      localStorage.removeItem("token");
+      
+      navigate('/auth/login');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
+
 
   const handleOpen = () => {
     setOpen(!open);
