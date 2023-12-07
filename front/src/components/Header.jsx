@@ -8,6 +8,15 @@ import api from "../libs/api";
 const Header = () => {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
+  const [msg, setMsg] = useState(" ");
+  const isAuthenticated = localStorage.getItem("token");
+
+
+  const logout = (e) => {
+    e.preventDefault();
+    api.post("/logout").then((response) => setMsg(response.message));
+    console.log(msg);
+  };
 
   const handleOpen = () => {
     setOpen(!open);
@@ -27,7 +36,7 @@ const Header = () => {
         <ul className="header-list">
           <li>
             {" "}
-            <Link to="/auth/home"> Início </Link>{" "}
+            <Link to={isAuthenticated ? "/system/home" : "/auth/home"}> Início </Link>{" "}
           </li>
           <li>
             {" "}
@@ -48,8 +57,8 @@ const Header = () => {
       </button>
       {open ? (
         <ul className="Menu">
-          <li className="Menu-item">
-            <Link className="op-item">Sair</Link>
+          <li className="Menu-item" onClick={logout}>
+            <Link className="op-item" >Sair</Link>
           </li>
         </ul>
       ) : null}

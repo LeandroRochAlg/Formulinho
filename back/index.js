@@ -167,12 +167,14 @@ app.put('/users', verificaToken, async (req, res) => {
 app.put('/users/password', verificaToken, async (req, res) => {
     const user = req.user;
 
+    console.log(`bucetaaaa ${req.body.actualPassword}`);
+
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
     const userArquivo = usuarios.find((u) => u.id === user.id);
 
     // Verifica senha atual
-    const passwordValidado = await bcrypt.compare(req.body.password, userArquivo.password);
+    const passwordValidado = await bcrypt.compare(req.body.actualPassword, userArquivo.password);
 
     // Se senha não bater, retorna erro
     if (!passwordValidado) {
