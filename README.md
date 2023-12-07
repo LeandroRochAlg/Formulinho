@@ -7,8 +7,7 @@
 
 
 
-Nosso projeto é focado em mostrar todas as corridas de Formula 1 desde 1950 (filtradas por ano), e cada corrida será mostrado em formato de cartão com varias informações dentro,
-também será possível o usuário avaliar cada corrida, sendo essa informação guardada no banco de dados. O projeto conta com 6 paginas, sendo divididas em autenticação, pesquisa e edição.
+Nosso projeto é focado em mostrar todas as corridas de Fórmula 1 desde 1950, filtradas por ano. Cada corrida será apresentada em formato de cartão com várias informações. Além disso, os usuários terão a possibilidade de avaliar cada corrida, e essas informações serão armazenadas no banco de dados. O projeto é composto por seis páginas, divididas em autenticação, pesquisa e edição.
 
 ## Pagina Inicial
 ![](img/Home.jpeg)
