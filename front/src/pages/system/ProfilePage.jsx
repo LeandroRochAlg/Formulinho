@@ -12,6 +12,9 @@ const ProfilePage = () => {
 
   const username = useRef(null);
   const email = useRef(null);
+  const newPassword = useRef(null);
+  const password = useRef(null);
+  const confirmPassword = useRef(null);
 
   const updateInfo = (e) => {
     e.preventDefault();
@@ -21,24 +24,28 @@ const ProfilePage = () => {
     };
     console.log("Data submitted:", data);
     api.put("/users", data).then((response) => setMsg(response.data.message));
-    // try {
-    //   const response = api.put("/users", data);
-    //   console.log(response.data);
-    //   setMsg(response.data.message);
-    // } catch (error) {
-    //   console.log(error.response.data.error);
-    //   setMsg(error.response.data.error);
-    // }
   };
 
-useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const response = await api.get("/users");
-      setUser(response.data);
-    } catch (error) {
-    }
+  const updatePassword = (e) => {
+    e.preventDefault();
+    const data = {
+      newPassword: newPassword.current.value,
+      password: password.current.value,
+      confirmPassword: confirmPassword.current.value,
+    };
+    console.log("Data submitted:", data);
+    api.put("/users/password", data).then((response) => setMsg(response.data.message));
+    console.log(msg);
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await api.get("/users");
+        setUser(response.data);
+      } catch (error) {
+      }
+    };
 
   fetchUser();
 }, []);
@@ -75,12 +82,27 @@ console.log(`cuzinho ${user}`);
             </form>
           </section>
           <section>
-            <form>
+            <form onSubmit={updatePassword}>
               <h2>Alterar Senha</h2>
               <p>Certifique-se que está escolhendo uma senha segura</p>
-              <input type="password" placeholder="Nova senha" />
-              <input type="password" placeholder="Senha" />
-              <input type="password" placeholder="Confirme Senha" />
+              <input 
+                type="password" 
+                name="newPassword" 
+                placeholder="Nova senha" 
+                ref={newPassword}  
+                />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="Senha" 
+                ref={password}
+              />
+              <input 
+                type="password" 
+                name="confirmPassword" 
+                placeholder="Confirme Senha" 
+                ref={confirmPassword}
+              />
               <button>Atualizar</button>
             </form>
           </section>
