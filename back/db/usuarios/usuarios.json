@@ -48,18 +48,6 @@
     "password": "$2b$10$jUFx9Jn3skiZUDyi4xDJcuGg5Yeh1ZlmnooeR9ctohYCSn5T4Hnvm"
   },
   {
-    "id": 9,
-    "username": "leclerc16",
-    "email": "leclerc@ferrari.com",
-    "password": "$2b$10$F4DKn06xQHrR1Du9zvrnOOCkmTP47oOH4A.nsK3ZquxsAmYhLwnju"
-  },
-  {
-    "id": 10,
-    "username": "asda",
-    "email": "asd",
-    "password": "$2b$10$YNv5PDmrEeL/wW9LqTAvw.2HREDZS4ThnWLtsI8IUzqLULS8norJu"
-  },
-  {
     "id": 11,
     "username": "sainz55",
     "email": "sainz@ferrari.com",
@@ -76,5 +64,11 @@
     "username": "AnaKelly",
     "email": "kelly@gmail.com",
     "password": "$2b$10$.0XauRWwUDhA5Y8XP64bvOJOhvgC3QkE4KmXLtDpSsI6GB4E4aWDu"
+  },
+  {
+    "id": 14,
+    "username": "leclerc16",
+    "email": "leclerc@ferrari.com",
+    "password": "$2b$10$6tqGIngvwLEuC.NG2.1wJOWDoPpCJtUE/S7oA9mb9ZKtkKBc63YHe"
   }
 ]
