@@ -1,18 +1,21 @@
-import { Route, Routes } from "react-router-dom";
+// PublicRoutes.jsx
+import React from "react";
+import { Route } from "react-router-dom";
 import HomeScreen from "../pages/auth/HomeScreen.jsx";
 import LoginPage from "../pages/auth/LoginPage.jsx";
 import RegisterPage from "../pages/auth/RegisterPage.jsx";
 import NotFoundPage from "../pages/errors/Page404.jsx";
 
+
+
 const PublicRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/home" element={<HomeScreen />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-  );
+
+  return [
+    <Route key="home" path="/auth/home" element={<HomeScreen />} />,
+    <Route key="login" path="/auth/login" element={<LoginPage />} />,
+    <Route key="register" path="/auth/register" element={<RegisterPage />} />,
+    <Route key="notfound" path="/auth/*" element={<NotFoundPage />} />,
+  ];
 };
 
 export default PublicRoutes;
