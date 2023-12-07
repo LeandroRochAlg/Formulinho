@@ -1,5 +1,5 @@
 class Corrida{
-    constructor(ano, round, circuitId, name, date, time, url, avaliacao){
+    constructor(ano, round){
         this.ano = ano;
         this.round = round;
         this.avaliacoes = [];
