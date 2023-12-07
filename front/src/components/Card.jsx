@@ -1,8 +1,6 @@
 import "../styles/components/card.css";
 
-
 const Card = ({raceName, circuitId, winner, team, fastestLap, place, onClick }) => {
-  console.log(circuitId);
   return (
     <>
       <div className="card" onClick={onClick}>
