@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import "../../styles/auth/homescreencss.css";
 
-const HomeScreen = () => {
+const HomePage = () => {
   const [lastRaceInfo, setLastRaceInfo] = useState(null);
   const [winner, setWinner] = useState(null);
   const [time, setTime] = useState(null);
@@ -30,18 +28,7 @@ const HomeScreen = () => {
     (document.title = "Pagina Inicial"),
     (
       <>
-        <div className="home-header">
-          <header className="home-navbar">
-            <div className="home-nav-itens">
-              <ul className="home-header-list">
-                <li>
-                  {" "}
-                  <Link to="/auth/login"> Entrar </Link>{" "}
-                </li>
-              </ul>
-            </div>
-          </header>
-        </div>
+        <Header />
         <div className="home-body">
           <h1 className="f1">formula 1</h1>
           <p className="last-race">ultima corrida:</p>
@@ -66,4 +53,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomePage;

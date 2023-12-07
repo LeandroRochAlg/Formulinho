@@ -16,6 +16,7 @@ app.listen(3000, () => {
 });
 
 const User = require('./model/User');
+const Corrida = require('./model/Corrida');
 
 // Middleware para verificação de token
 const verificaToken = (req, res, next) => {
@@ -166,12 +167,14 @@ app.put('/users', verificaToken, async (req, res) => {
 app.put('/users/password', verificaToken, async (req, res) => {
     const user = req.user;
 
+    console.log(`bucetaaaa ${req.body.actualPassword}`);
+
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
     const userArquivo = usuarios.find((u) => u.id === user.id);
 
     // Verifica senha atual
-    const passwordValidado = await bcrypt.compare(req.body.password, userArquivo.password);
+    const passwordValidado = await bcrypt.compare(req.body.actualPassword, userArquivo.password);
 
     // Se senha não bater, retorna erro
     if (!passwordValidado) {
@@ -215,4 +218,47 @@ app.delete('/users', verificaToken, async (req, res) => {
     
     // Retorna confirmação
     res.json({message: 'Usuário apagado com sucesso!'});
+});
+
+// Rota para logout
+app.post('/logout', verificaToken, async (req, res) => {
+    const user = req.user;
+    
+    // Retorna confirmação
+    res.json({message: 'Logout realizado com sucesso!'});
+});
+
+// Rota para avaliar uma corrida
+app.post('/avaliar', verificaToken, async (req, res) => {
+    const user = req.user;
+
+    const jsonPath = path.join(__dirname, '.', 'db', 'corridas', 'corridas.json');   // Caminho do arquivo JSON (/db/corridas/corridas.json)
+    const corridas = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+    const corridaArquivo = corridas.find((c) => c.ano === req.body.ano && c.round === req.body.round);
+
+    // Verifica se corrida existe, se não existir, cria
+    if (!corridaArquivo) {
+        
+    }
+
+    // Verifica se o usuário já avaliou a corrida
+    if (corridaArquivo.avaliacao.find((a) => a.user === user.id)) {
+        return res.status(400).json({ error: 'Corrida já avaliada' });
+    }
+
+    // Verifica se avaliação é válida
+    if (req.body.avaliacao < 1 || req.body.avaliacao > 5) {
+        return res.status(400).json({ error: 'Avaliação inválida' });
+    }
+
+    // Avalia corrida
+    try{
+        corridaArquivo.avaliacao.push(req.body.avaliacao);
+        fs.writeFileSync(jsonPath, JSON.stringify(corridas, null, 2));
+
+        // Retorna confirmação
+        res.json({message: 'Corrida avaliada com sucesso!'});
+    } catch (err) {
+        return res.status(400).json({ error: 'Erro ao avaliar corrida' });
+    }
 });

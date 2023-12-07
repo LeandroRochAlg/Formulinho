@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/system/*" element={<PrivateRoutes />} />
           <Route path="/auth/*" element={<PublicRoutes />} />
+          <Route path="/*" element={<PublicRoutes />} />
         </Routes>
       </Router>
     </>

@@ -9,11 +9,13 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState(" ");
+  const [msg1, setMsg1] = useState(" ");
+  const [msg2, setMsg2] = useState(" ");
 
   const username = useRef(null);
   const email = useRef(null);
   const newPassword = useRef(null);
-  const password = useRef(null);
+  const actualPassword = useRef(null);
   const confirmPassword = useRef(null);
 
   const updateInfo = (e) => {
@@ -30,12 +32,20 @@ const ProfilePage = () => {
     e.preventDefault();
     const data = {
       newPassword: newPassword.current.value,
-      password: password.current.value,
+      actualPassword: actualPassword.current.value,
       confirmPassword: confirmPassword.current.value,
     };
     console.log("Data submitted:", data);
-    api.put("/users/password", data).then((response) => setMsg(response.data.message));
-    console.log(msg);
+    api.put("/users/password", data).then((response) => setMsg1(response.data.message));
+    console.log(msg1);
+  };
+
+  const deleteUser = (e) => {
+    e.preventDefault();
+    console.log("Data submitted:", data);
+    api.delete("/users").then((response) => setMsg2(response.message));
+    setOpen(false);
+    console.log(msg2);
   };
 
   useEffect(() => {
@@ -64,12 +74,14 @@ console.log(`cuzinho ${user}`);
               <input
                 type="text"
                 name="username"
+                defaultValue={user ? user.username : ""}
                 ref={username}
                 required
               />
               <input 
                 type="email" 
                 name="email"
+                defaultValue={user ? user.email : ""}
                 ref={email}
                 required
               />
@@ -93,17 +105,22 @@ console.log(`cuzinho ${user}`);
                 />
               <input 
                 type="password" 
-                name="password" 
-                placeholder="Senha" 
-                ref={password}
-              />
-              <input 
-                type="password" 
                 name="confirmPassword" 
                 placeholder="Confirme Senha" 
                 ref={confirmPassword}
               />
+              <input 
+                type="password" 
+                name="actualPassword" 
+                placeholder="Senha" 
+                ref={actualPassword}
+              />
               <button>Atualizar</button>
+              {msg1 && (
+              <div className="error-profile">
+                <p>{msg1}</p>
+              </div>
+              )}
             </form>
           </section>
           <section>
@@ -117,6 +134,11 @@ console.log(`cuzinho ${user}`);
             >
               Deletar conta
             </button>
+            {msg2 && (
+              <div className="error-profile">
+                <p>{msg2}</p>
+              </div>
+              )}
           </section>
         </div>
       </div>
@@ -128,7 +150,7 @@ console.log(`cuzinho ${user}`);
               Todos os seus dados serão apagados e não será possível
               recuperá-los novamente.
             </p>
-            <button id="delete">Confirmar</button>
+            <button id="delete" onClick={deleteUser}>Confirmar</button>
             <button
               onClick={() => {
                 setOpen(false);
