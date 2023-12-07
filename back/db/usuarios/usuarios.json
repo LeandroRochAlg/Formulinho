@@ -70,5 +70,11 @@
     "username": "cu",
     "email": "cu@denitro.com",
     "password": "$2b$10$7e4TDCFzAPVJaKANnlT1xO7vroqYeMABYRRLd5Qd2C1HHJaSNYEvK"
+  },
+  {
+    "id": 16,
+    "username": "verstappen1",
+    "email": "verstappen1@ex.com",
+    "password": "$2b$10$EVxUaA.yGaBvhNj2zyaAgeZD/w2V35Qso4ZG4WPNFuQji6LNS4sjS"
   }
 ]
