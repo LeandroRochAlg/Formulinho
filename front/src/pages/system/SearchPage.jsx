@@ -56,7 +56,7 @@ const SearchPage = () => {
 
     const circuitIdArray = [];
     const winnerArray = [];
-    const teamArray = []; 
+    const teamArray = [];
     const fastestLapArray = [];
     const placeArray = [];
     const localityArray = [];

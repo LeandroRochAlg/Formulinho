@@ -1,76 +1,76 @@
-.profile-body{
+.profile-body {
     background: #272727;
     height: 100vh;
     width: 100%;
     overflow-y: scroll;
     z-index: 0;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.button-grid {
+  }
+  
+  .button-grid {
     margin-top: 18%;
     padding: 10vh;
     display: grid;
     grid-template-columns: repeat(1, 3fr);
     gap: 20px;
-}
-
-.button-grid section {
-    background-color: #E10600;
+  }
+  
+  .button-grid section {
+    background-color: #e10600;
     padding: 20px;
     border-radius: 5px;
-}
-
-.button-grid h2 {
+  }
+  
+  .button-grid h2 {
     color: #fff;
     font-size: 18px;
     margin-bottom: 10px;
-}
-
-.button-grid p {
+  }
+  
+  .button-grid p {
     color: #fff;
     font-size: 14px;
     margin-bottom: 20px;
-}
-
-.button-grid input {
+  }
+  
+  .button-grid input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.button-grid input:focus {
+  }
+  
+  .button-grid input:focus {
     outline: none;
-    border: 2px solid #E10600;
-}
-
-.button-grid button {
+    border: 2px solid #e10600;
+  }
+  
+  .button-grid button {
     padding: 10px 20px;
     background-color: #fff;
     color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.button-grid button:hover {
+  }
+  
+  .button-grid button:hover {
     background-color: #303030;
     color: #fff;
-}
-
-#delete:hover {
+  }
+  
+  #delete:hover {
     background-color: #8d0500;
-}
-
-::placeholder {
+  }
+  
+  ::placeholder {
     color: #272727;
-}
-
-.float{
+  }
+  
+  .float {
     position: fixed;
     display: flex;
     top: 0;
@@ -80,9 +80,9 @@
     background-color: rgba(39, 39, 39, 0.9);
     height: 100vh;
     width: 100%;
-}
-
-.modal{
+  }
+  
+  .modal {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -90,30 +90,40 @@
     background-color: #111111;
     padding: 20px;
     border-radius: 5px;
-}
-
-.modal h2 {
+  }
+  
+  .modal h2 {
     color: #fff;
     font-size: 18px;
     margin-bottom: 10px;
-}
-
-.modal p {
+  }
+  
+  .modal p {
     color: #fff;
     font-size: 14px;
     margin-bottom: 20px;
-}
-
-.modal button {
+  }
+  
+  .modal button {
     padding: 10px 20px;
     background-color: #fff;
     color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.modal button:hover {
+  }
+  
+  .modal button:hover {
     background-color: #303030;
     color: #fff;
+}
+
+.error-profile {
+    z-index: 100;
+}
+
+.error-profile p{
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
 }

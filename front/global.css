@@ -1,21 +1,22 @@
 :root {
-    --main-accent-color: #A60303;
-    --secondary-accent-color: #CBCCCC;
-    --tertiary-accent-color: #15151E;
-    --main-text-color: #120E10;
-    --main-bg-color: #E10600;
-}
-
-*{
+    --main-accent-color: #a60303;
+    --secondary-accent-color: #cbcccc;
+    --tertiary-accent-color: #15151e;
+    --main-text-color: #120e10;
+    --main-bg-color: #e10600;
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Titillium Web', sans-serif;
-}
-
-body{
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  body {
     margin: 0;
     padding: 0;
     overflow: hidden;
     z-index: 0;
-}
+  }
+  

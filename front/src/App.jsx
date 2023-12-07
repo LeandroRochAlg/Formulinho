@@ -1,8 +1,7 @@
-import React from 'react'
-import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-import PrivateRoutes from './routers/PrivateRoutes';
-import PublicRoutes from './routers/PublicRoutes';
-
+import React from "react";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import PrivateRoutes from "./routers/PrivateRoutes";
+import PublicRoutes from "./routers/PublicRoutes";
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
