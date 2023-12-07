@@ -8,6 +8,10 @@ import ProfilePage from "./pages/auth/ProfilePage.jsx";
 
 const AppRouters = createBrowserRouter([
     {
+        path: "/home",
+        element: <HomeScreen />
+    },
+    {
         path: "/",
         element: <HomeScreen />
     },
@@ -22,10 +26,6 @@ const AppRouters = createBrowserRouter([
     {
         path: "/search",
         element: <SearchPage />
-    },
-    {
-        path: "/home",
-        element: <HomeScreen />
     },
     {
         path: "/about",
