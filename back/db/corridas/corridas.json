@@ -1,0 +1,53 @@
+[
+  {
+    "ano": "2023",
+    "round": "1",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": "1",
+        "nota": "5"
+      },
+      {
+        "id": 2,
+        "idUsuario": "2",
+        "nota": "4"
+      },
+      {
+        "id": 3,
+        "idUsuario": "3",
+        "nota": "3"
+      },
+      {
+        "id": 4,
+        "idUsuario": "5"
+      }
+    ]
+  },
+  {
+    "ano": "2023",
+    "round": "2",
+    "avaliacoes": [
+      {
+        "id": 4,
+        "idUsuario": "1",
+        "nota": "5"
+      },
+      {
+        "id": 5,
+        "idUsuario": "2",
+        "nota": "3"
+      }
+    ]
+  },
+  {
+    "ano": "2023",
+    "round": "3",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": "5"
+      }
+    ]
+  }
+]

@@ -17,6 +17,7 @@ app.listen(3000, () => {
 
 const User = require('./model/User');
 const Corrida = require('./model/Corrida');
+const Avaliacao = require('./model/Avaliacao');
 
 // Middleware para verificação de token
 const verificaToken = (req, res, next) => {
@@ -234,30 +235,37 @@ app.post('/avaliar', verificaToken, async (req, res) => {
 
     const jsonPath = path.join(__dirname, '.', 'db', 'corridas', 'corridas.json');   // Caminho do arquivo JSON (/db/corridas/corridas.json)
     const corridas = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
-    const corridaArquivo = corridas.find((c) => c.ano === req.body.ano && c.round === req.body.round);
-
-    // Verifica se corrida existe, se não existir, cria
-    if (!corridaArquivo) {
-        
-    }
-
-    // Verifica se o usuário já avaliou a corrida
-    if (corridaArquivo.avaliacao.find((a) => a.user === user.id)) {
-        return res.status(400).json({ error: 'Corrida já avaliada' });
-    }
+    let corridaArquivo = corridas.find((c) => c.ano === req.body.ano && c.round === req.body.round);
 
     // Verifica se avaliação é válida
     if (req.body.avaliacao < 1 || req.body.avaliacao > 5) {
         return res.status(400).json({ error: 'Avaliação inválida' });
     }
 
+    // Verifica se corrida existe, se não existir, cria
+    let corrida;
+
+    if (!corridaArquivo) {
+        corrida = new Corrida(req.body.ano, req.body.round);
+        corridas.push(corrida);
+    } else {
+        corrida = corridaArquivo;
+    }
+
     // Avalia corrida
-    try{
-        corridaArquivo.avaliacao.push(req.body.avaliacao);
+    try {
+        console.log('Antes de criar a avaliação:', corrida);
+
+        const avaliacao = new Avaliacao(corrida.avaliacoes.length + 1, req.body.avaliacao);
+    
+        console.log('Depois de criar a avaliação:', corrida);
+    
+        corrida.avaliacoes.push(avaliacao);
+
         fs.writeFileSync(jsonPath, JSON.stringify(corridas, null, 2));
 
         // Retorna confirmação
-        res.json({message: 'Corrida avaliada com sucesso!'});
+        res.json({ message: 'Corrida avaliada com sucesso!' });
     } catch (err) {
         return res.status(400).json({ error: 'Erro ao avaliar corrida' });
     }
