@@ -20,7 +20,18 @@
       },
       {
         "id": 4,
-        "idUsuario": "5"
+        "idUsuario": "14",
+        "nota": "5"
+      },
+      {
+        "id": 5,
+        "idUsuario": 14,
+        "nota": "3"
+      },
+      {
+        "id": 6,
+        "idUsuario": 14,
+        "nota": "1"
       }
     ]
   },
@@ -46,7 +57,13 @@
     "avaliacoes": [
       {
         "id": 1,
-        "idUsuario": "5"
+        "idUsuario": "14",
+        "nota": "5"
+      },
+      {
+        "id": 2,
+        "idUsuario": 14,
+        "nota": "3"
       }
     ]
   }

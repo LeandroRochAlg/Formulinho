@@ -5,6 +5,8 @@ import Filter from "../../components/Filter";
 import React, { useState, useEffect } from "react";
 import RaceDetails from "../auth/components/RaceDetails";
 import Card from "../../components/Card";
+import api from "../../libs/api";
+import { set } from "react-hook-form";
 
 // Função para encontrar a volta mais rápida da corrida
 const voltaMaisRapida = (results) => {
@@ -21,6 +23,21 @@ const voltaMaisRapida = (results) => {
   }
   return "Não Aplicável";
 }
+
+// Pegar a avaliação da corrida passada por parâmetro e enviar para o backend
+const getRatingFromBackend = async (ano, round) => {
+  const data = {
+    ano: ano,
+    round: round
+  }
+
+  api.get(`/avaliacoes`, {params: data}).then((response) => {
+    setMediaEstrelas(response.data.media);
+  }).catch((error) => {
+    console.error('Error during getRatingFromBackend:', error);
+  });
+};
+
 const sendRatingToBackend = async (ano, round, avaliacao) => {
   const token = localStorage.getItem('token'); // Certifique-se de ajustar isso conforme a necessidade
   const url = '/avaliar';
@@ -33,9 +50,9 @@ const sendRatingToBackend = async (ano, round, avaliacao) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        ano: parseInt(ano), 
-        round: parseInt(round), 
-        avaliacao: parseInt(avaliacao), 
+        ano: ano, 
+        round: round, 
+        avaliacao: avaliacao, 
       }),
     });
 
@@ -70,6 +87,7 @@ const SearchPage = () => {
   const [places, setPlaces] = useState([]);
   const [localities, setLocalities] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [mediaEstrelas, setMediaEstrelas] = useState(null);
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedYear, setSelectedYear] = useState("");
   const [searchValue, setSearchValue] = useState("");
@@ -91,6 +109,7 @@ const SearchPage = () => {
     const localityArray = [];
     const countryArray = [];
     const raceNameArray = [];
+    const mediaEstrelasArray = [];
 
     data.MRData.RaceTable.Races.forEach((race) => {
       circuitIdArray.push(race.Circuit.circuitId);
@@ -105,6 +124,7 @@ const SearchPage = () => {
       } else {
         fastestLapArray.push("Não Aplicável");
       }
+      //mediaEstrelasArray.push(getRatingFromBackend(race.season, race.round));
     });
     setRaceName(raceNameArray);
     setCircuitId(circuitIdArray);
@@ -114,6 +134,7 @@ const SearchPage = () => {
     setPlaces(placeArray);
     setLocalities(localityArray);
     setCountries(countryArray);
+    //setMediaEstrelas(mediaEstrelasArray);
   };
 
   const updateRating = (rating) => {
@@ -134,11 +155,13 @@ const SearchPage = () => {
     locality: localities[index],
     country: countries[index],
     raceName: raceName[index],
+    // mediaEstrelas: mediaEstrelas[index],
   }));
 
   useEffect(() => {
     fetchData();
-  }, []);
+    getRatingFromBackend("2023", "1");
+  }, [console.log("Avaliação: ", mediaEstrelas)]);
 
  
   const filteredData = searchValue
@@ -181,6 +204,7 @@ const SearchPage = () => {
                 team={dados.teams}
                 fastestLap={dados.fastestLaps}
                 place={dados.places}
+                mediaEstrelas={dados.mediaEstrelas}
                 onClick={() => handleCardClick(dados)}
                 key={index}
               />
