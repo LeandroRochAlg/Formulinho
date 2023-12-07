@@ -91,6 +91,12 @@
   padding-left: 10px;
 }
 
+.form-field p{
+  margin-left: 40px;
+  margin-top: -10px;
+  color: #e10600;
+}
+
 /* Botão de Envio do Formulário */
 .form-submit {
   text-align: center;

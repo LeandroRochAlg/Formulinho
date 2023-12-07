@@ -21,6 +21,7 @@ const loginPage = () => {
     try {
       const response = await api.post("/login", data);
       setMsg(response.data);
+      localStorage.setItem("token", response.data.token);
       nav("/search");
     } catch (error) {
       setMsg(error.response.data.error);

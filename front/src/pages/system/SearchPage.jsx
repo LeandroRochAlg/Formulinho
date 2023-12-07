@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import Filter from "../../components/Filter";
 import React, { useState, useEffect } from "react";
-import RaceDetails from "./components/RaceDetails";
+import RaceDetails from "../auth/components/RaceDetails";
 import Card from "../../components/Card";
 
 const formatarNome = (nome) => {

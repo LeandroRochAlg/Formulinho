@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 
 
 
-const About = () => {
+const AboutPage = () => {
     document.title = 'Sobre';
     return (
         <><Header /><div className='abt-body'>
@@ -23,4 +23,4 @@ const About = () => {
     );
 }
 
-export default About;
+export default AboutPage;
