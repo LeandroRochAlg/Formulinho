@@ -92,7 +92,7 @@ app.post('/create', async (req, res) => {
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
     
     // Se usuário já existir, retorna erro
-    if (usuarios.find((u) => u.username === username)) {
+    if (usuarios.find((u) => u.username === username || u.email === email)) {
         return res.status(400).json({ error: 'Usuário já existe' });
     }
 
@@ -130,14 +130,30 @@ app.put('/users', verificaToken, async (req, res) => {
 
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+    const userArquivo = usuarios.find((u) => u.id === user.id);
+
+    // Se usuário já existir, retorna erro
+    if (usuarios.find((u) => u.username === req.body.username || u.email === req.body.email)) {
+        return res.status(400).json({ error: 'Usuário já existe' });
+    }
 
     // Atualiza usuário
-    user.username = req.body.username;
-    user.email = req.body.email;
-    fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
-    
-    // Retorna usuário
-    res.json(user);
+    try{
+        if (req.body.username){
+            userArquivo.username = req.body.username;
+        }else if (req.body.email){
+            userArquivo.email = req.body.email;
+        }else{
+            Exception('Erro ao atualizar usuário');
+        }
+
+        fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
+
+        // Retorna usuário
+        res.json(userArquivo);
+    } catch (err) {
+        return res.status(400).json({ error: 'Erro ao atualizar usuário' });
+    }
 });
 
 // Rota para atualização de senha
@@ -146,16 +162,17 @@ app.put('/users/password', verificaToken, async (req, res) => {
 
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+    const userArquivo = usuarios.find((u) => u.id === user.id);
 
     // Verifica senha atual
-    const passwordValidado = await bcrypt.compare(req.body.password, user.password);
-    
+    const passwordValidado = await bcrypt.compare(req.body.password, userArquivo.password);
+
     // Se senha não bater, retorna erro
     if (!passwordValidado) {
         return res.status(401).json({ error: 'Senha inválida' });
     }
 
-    // Verifica a confirmação da nova senha
+    // Verifica confirmação de senha
     if (req.body.newPassword !== req.body.confirmPassword) {
         return res.status(401).json({ error: 'Confirmação de senha inválida' });
     }
@@ -164,12 +181,16 @@ app.put('/users/password', verificaToken, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const senhaCrypt = await bcrypt.hash(req.body.newPassword, salt);
 
-    // Atualiza usuário
-    user.password = senhaCrypt;
-    fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
-    
-    // Retorna usuário
-    res.json(user);
+    // Atualiza senha
+    try{
+        userArquivo.password = senhaCrypt;
+        fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
+
+        // Retorna confirmação
+        res.json({message: 'Senha atualizada com sucesso!'});
+    } catch (err) {
+        return res.status(400).json({ error: 'Erro ao atualizar senha' });
+    }
 });
 
 // Rota para deletar usuário
@@ -178,6 +199,8 @@ app.delete('/users', verificaToken, async (req, res) => {
 
     const jsonPath = path.join(__dirname, '.', 'db', 'usuarios', 'usuarios.json');   // Caminho do arquivo JSON (/db/usuarios/users.json)
     const usuarios = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+
+    console.log(usuarios.indexOf(user));
 
     // Deleta usuário
     usuarios.splice(usuarios.indexOf(user), 1);
