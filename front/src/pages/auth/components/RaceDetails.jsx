@@ -25,8 +25,8 @@ export default function RaceDetails({ selectedRace }) {
           className="content-img"
           src={
             circuitId
-              ? `img/corridas/${circuitId}.jpg`
-              : "img/corridas/LogoF1.jpg"
+              ? `../img/corridas/${circuitId}.jpg`
+              : "../img/corridas/LogoF1.jpg"
           }
           alt={circuitId ? `Corrida ${circuitId}` : "Imagem padrão"}
         />
