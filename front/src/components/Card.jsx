@@ -7,6 +7,7 @@ const Card = ({
   team,
   fastestLap,
   place,
+  mediaEstrelas,
   onClick,
 }) => {
   return (
@@ -49,7 +50,7 @@ const Card = ({
           </ul>
         </div>
         <div className="rating">
-          <p>★★★★★</p>
+          <p className="rating-text">Avaliação: {mediaEstrelas}</p>
         </div>
       </div>
     </>

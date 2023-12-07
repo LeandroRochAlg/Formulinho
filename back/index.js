@@ -256,7 +256,7 @@ app.post('/avaliar', verificaToken, async (req, res) => {
     try {
         console.log('Antes de criar a avaliação:', corrida);
 
-        const avaliacao = new Avaliacao(corrida.avaliacoes.length + 1, req.body.avaliacao);
+        const avaliacao = new Avaliacao(corrida.avaliacoes.length + 1, user.id, req.body.avaliacao);
     
         console.log('Depois de criar a avaliação:', corrida);
     
@@ -269,4 +269,33 @@ app.post('/avaliar', verificaToken, async (req, res) => {
     } catch (err) {
         return res.status(400).json({ error: 'Erro ao avaliar corrida' });
     }
+});
+
+// Rota para pegar a avaliação de uma corrida
+app.get('/avaliacoes', async (req, res) => {
+    const jsonPath = path.join(__dirname, '.', 'db', 'corridas', 'corridas.json');   // Caminho do arquivo JSON (/db/corridas/corridas.json)
+    const corridas = JSON.parse(fs.readFileSync(jsonPath, { encoding: 'utf8', flag: 'r' }));
+    const corridaArquivo = corridas.find((c) => c.ano === req.body.ano && c.round === req.body.round);
+
+    // Verifica se corrida existe
+    if (!corridaArquivo) {
+        return res.json({ media: 0 });
+    }
+
+    // Retorna a média das avaliações
+    const avaliacoes = corridaArquivo.avaliacoes;
+
+    if (avaliacoes.length === 0) {
+        return res.json({ media: 0 });
+    }
+
+    let soma = 0;
+    avaliacoes.forEach((a) => {
+        soma += parseInt(a.nota);
+    });
+    let media = soma/avaliacoes.length;
+
+    console.log(media);
+
+    res.json({ media: media });
 });
