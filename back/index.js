@@ -152,7 +152,11 @@ app.put('/users', verificaToken, async (req, res) => {
         fs.writeFileSync(jsonPath, JSON.stringify(usuarios, null, 2));
 
         // Retorna usuário
-        res.json(userArquivo);
+        const usuarioRet = {
+            username: userArquivo.username,
+            email: userArquivo.email
+        };
+        res.json(usuarioRet);
     } catch (err) {
         return res.status(400).json({ error: 'Erro ao atualizar usuário' });
     }
