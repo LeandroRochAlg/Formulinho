@@ -19,15 +19,13 @@ const Header = () => {
     try {
       const response = await api.post("/logout");
       setMsg(response.message);
-      
+      console.log(msg);
       localStorage.removeItem("token");
-      
       navigate('/auth/login');
     } catch (error) {
       console.error('Error during logout:', error);
     }
   };
-
 
   const handleOpen = () => {
     setOpen(!open);
