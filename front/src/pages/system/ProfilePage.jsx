@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import api from "../../libs/api";
 
-
 import "../../styles/system/profilecss.css";
 
 const ProfilePage = () => {
@@ -50,17 +49,13 @@ const ProfilePage = () => {
                 {...register("username")}
               />
               {errors.username && <p>{errors.username.message}</p>}
-              <input 
-                type="email" 
-                placeholder="Email" 
-                {...register("email")}
-              />
+              <input type="email" placeholder="Email" {...register("email")} />
               {errors.username && <p>{errors.username.message}</p>}
               <button>Atualizar</button>
               {msg && (
-              <div className="error-message">
-                <p>{msg}</p>
-              </div>
+                <div className="error-message">
+                  <p>{msg}</p>
+                </div>
               )}
             </form>
           </section>
@@ -92,7 +87,10 @@ const ProfilePage = () => {
         <div className="float" style={{ display: "absolute" }}>
           <grid className="modal">
             <h2>Tem certeza que deseja excluir sua conta?</h2>
-            <p>Todos os seus dados serão apagados e não será possível recuperá-los novamente.</p>
+            <p>
+              Todos os seus dados serão apagados e não será possível
+              recuperá-los novamente.
+            </p>
             <button id="delete">Confirmar</button>
             <button
               onClick={() => {

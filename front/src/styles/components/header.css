@@ -1,5 +1,3 @@
-
-
 /* Estilização da Nav */
 .navbar {
     position: fixed;
@@ -11,43 +9,43 @@
     align-items: center;
     justify-content: center;
     z-index: 9;
-}
-
-.nav-itens {
+  }
+  
+  .nav-itens {
     position: absolute;
     left: 0;
     right: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-/* Estilização de Lista do Cabeçalho */
-.header-list {
+  }
+  
+  /* Estilização de Lista do Cabeçalho */
+  .header-list {
     display: flex;
     list-style-type: none;
     text-transform: uppercase;
     letter-spacing: 5%;
     font-size: 1rem;
     color: #ffffff;
-}
-
-.header-list li {
+  }
+  
+  .header-list li {
     padding: 2vh;
-}
-
-.header-list a {
+  }
+  
+  .header-list a {
     text-decoration: none;
     color: #ffffff;
-    font-size: 'extra-bold';
-}
-
-.header-list a:hover {
+    font-size: "extra-bold";
+  }
+  
+  .header-list a:hover {
     color: #250000;
-}
-
-/* Estilização de Botão de Navegação */
-.nav-button {
+  }
+  
+  /* Estilização de Botão de Navegação */
+  .nav-button {
     position: absolute;
     right: 0;
     background-color: #272727;
@@ -61,18 +59,19 @@
     display: inline-flex;
     align-items: center;
     z-index: 9;
-}
-
-/* Estilização de Username */
-.username, .username-icon {
+  }
+  
+  /* Estilização de Username */
+  .username,
+  .username-icon {
     color: #f4fff8;
     font-size: 16px;
     margin-left: 10px;
     transition: all 200ms ease-in-out;
-}
-
-/* Estilização de Menu */
-.Menu {
+  }
+  
+  /* Estilização de Menu */
+  .Menu {
     position: absolute;
     right: 0;
     top: 6.5vh;
@@ -89,30 +88,31 @@
     flex-direction: column;
     align-items: left;
     justify-content: center;
-}
-
-/* Estilização de Item de Menu */
-.Menu-item {
+  }
+  
+  /* Estilização de Item de Menu */
+  .Menu-item {
     cursor: pointer;
-    font-family: 'Titillium Web';
+    font-family: "Titillium Web";
     font-size: 1rem;
     font-weight: 300;
-    border-radius: 5px;   
-}
-
-.Menu-item:hover {
+    border-radius: 5px;
+  }
+  
+  .Menu-item:hover {
     background-color: #373738;
-}
-
-/* Estilização de item */
-.op-item {
+  }
+  
+  /* Estilização de item */
+  .op-item {
     color: #f4fff8;
     text-decoration: none;
     transition: 0.3s;
     padding: 1vh;
-}
-
-.op-item:hover {
+  }
+  
+  .op-item:hover {
     font-size: 1.05rem;
     color: #ffffff;
-}
+  }
+  

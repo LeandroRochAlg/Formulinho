@@ -1,6 +1,14 @@
 import "../styles/components/card.css";
 
-const Card = ({raceName, circuitId, winner, team, fastestLap, place, onClick }) => {
+const Card = ({
+  raceName,
+  circuitId,
+  winner,
+  team,
+  fastestLap,
+  place,
+  onClick,
+}) => {
   return (
     <>
       <div className="card" onClick={onClick}>
@@ -24,22 +32,18 @@ const Card = ({raceName, circuitId, winner, team, fastestLap, place, onClick }) 
             </li>
             <li>
               <p className="card-text">
-                EQUIPE:{" "}
-                <span className="card-span">{team}</span>
+                EQUIPE: <span className="card-span">{team}</span>
               </p>
             </li>
             <li>
               <p className="card-text">
                 VOLTA MAIS RÁPIDA:{" "}
-                <span className="card-span">
-                  {fastestLap}
-                </span>
+                <span className="card-span">{fastestLap}</span>
               </p>
             </li>
             <li>
               <p className="card-text">
-                LOCAL DA PROVA:{" "}
-                <span className="card-span">{place}</span>
+                LOCAL DA PROVA: <span className="card-span">{place}</span>
               </p>
             </li>
           </ul>

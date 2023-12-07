@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/auth/homescreencss.css";
 
-
 const HomeScreen = () => {
   const [lastRaceInfo, setLastRaceInfo] = useState(null);
   const [winner, setWinner] = useState(null);
@@ -27,40 +26,42 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    document.title = "Pagina Inicial",
-    <>
-      <div className="home-header">
-        <header className="home-navbar">
-          <div className="home-nav-itens">
-            <ul className="home-header-list">
-              <li>
-                {" "}
-                <Link to="/auth/login"> Entrar </Link>{" "}
-              </li>
-            </ul>
-          </div>
-        </header>
-      </div>
-      <div className="home-body">
-        <h1 className="f1">formula 1</h1>
-        <p className="last-race">ultima corrida:</p>
-        <h2 className="place">
-          <span className="place"> {place ? place : "Carregando..."} </span>{" "}
-        </h2>
-        <p className="winner">
-          <span className="winner">
-            {winner
-              ? `${winner.givenName} ${winner.familyName}`
-              : "Carregando..."}
-          </span>{" "}
-        </p>
-        <p className="team">
-          <span className="team">
-            {team ? `${team.name}` : "Carregando..."}
-          </span>
-        </p>
-      </div>
-    </>
+    (document.title = "Pagina Inicial"),
+    (
+      <>
+        <div className="home-header">
+          <header className="home-navbar">
+            <div className="home-nav-itens">
+              <ul className="home-header-list">
+                <li>
+                  {" "}
+                  <Link to="/auth/login"> Entrar </Link>{" "}
+                </li>
+              </ul>
+            </div>
+          </header>
+        </div>
+        <div className="home-body">
+          <h1 className="f1">formula 1</h1>
+          <p className="last-race">ultima corrida:</p>
+          <h2 className="place">
+            <span className="place"> {place ? place : "Carregando..."} </span>{" "}
+          </h2>
+          <p className="winner">
+            <span className="winner">
+              {winner
+                ? `${winner.givenName} ${winner.familyName}`
+                : "Carregando..."}
+            </span>{" "}
+          </p>
+          <p className="team">
+            <span className="team">
+              {team ? `${team.name}` : "Carregando..."}
+            </span>
+          </p>
+        </div>
+      </>
+    )
   );
 };
 
