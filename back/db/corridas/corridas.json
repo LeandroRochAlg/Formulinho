@@ -1,0 +1,96 @@
+[
+  {
+    "ano": "2023",
+    "round": "1",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": "1",
+        "nota": "5"
+      },
+      {
+        "id": 2,
+        "idUsuario": "2",
+        "nota": "4"
+      },
+      {
+        "id": 3,
+        "idUsuario": "3",
+        "nota": "3"
+      },
+      {
+        "id": 4,
+        "idUsuario": "14",
+        "nota": "5"
+      },
+      {
+        "id": 5,
+        "idUsuario": 14,
+        "nota": "3"
+      },
+      {
+        "id": 6,
+        "idUsuario": 14,
+        "nota": "1"
+      }
+    ]
+  },
+  {
+    "ano": "2023",
+    "round": "2",
+    "avaliacoes": [
+      {
+        "id": 4,
+        "idUsuario": "1",
+        "nota": "5"
+      },
+      {
+        "id": 5,
+        "idUsuario": "2",
+        "nota": "3"
+      }
+    ]
+  },
+  {
+    "ano": "2023",
+    "round": "3",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": "14",
+        "nota": "5"
+      },
+      {
+        "id": 2,
+        "idUsuario": 14,
+        "nota": "3"
+      }
+    ]
+  },
+  {
+    "ano": "1",
+    "round": 2023,
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": 4,
+        "nota": "4"
+      },
+      {
+        "id": 2,
+        "idUsuario": 4,
+        "nota": "3"
+      },
+      {
+        "id": 3,
+        "idUsuario": 4,
+        "nota": "3"
+      },
+      {
+        "id": 4,
+        "idUsuario": 4,
+        "nota": "5"
+      }
+    ]
+  }
+]

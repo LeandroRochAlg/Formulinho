@@ -21,66 +21,72 @@ const loginPage = () => {
     try {
       const response = await api.post("/login", data);
       setMsg(response.data);
-      nav("/search");
+      localStorage.setItem("token", response.data.token);
+      nav("/system/search");
     } catch (error) {
       setMsg(error.response.data.error);
     }
   };
 
   return (
-    <div className="page-body">
-      <div className="form-container">
-        <div className="form-header">
-          <a href="/">
-            <img
-              id="f1"
-              src="https://account.formula1.com/images/f1_logo.svg"
-              data-i18n="[alt]nav.logo"
-              alt="Formula1"
-            />
-          </a>
-        </div>
-        <form onSubmit={handleSubmit(submit)} noValidate>
-          <div className="form-field">
-            <div>
-              <label>Username:</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="hamilton44"
-                {...register("username", { required: "Username is required" })}
+    (document.title = "Entrar"),
+    (
+      <div className="page-body">
+        <div className="form-container">
+          <div className="form-header">
+            <a href="/">
+              <img
+                id="f1"
+                src="https://account.formula1.com/images/f1_logo.svg"
+                data-i18n="[alt]nav.logo"
+                alt="Formula1"
               />
-              {errors.username && <p>{errors.username.message}</p>}
-            </div>
-            <div>
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="********"
-                {...register("password", { required: "Password is required" })}
-              />
-              {errors.password && <p>{errors.password.message}</p>}
-            </div>
+            </a>
           </div>
-          <div className="form-submit">
-            <button>LOGIN</button>
-            {msg && (
-              <div className="error-message">
-                <p>{msg}</p>
+          <form onSubmit={handleSubmit(submit)} noValidate>
+            <div className="form-field">
+              <div>
+                <label>Usuário:</label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="hamilton44"
+                  {...register("username", {
+                    required: "Usuário é necessário",
+                  })}
+                />
+                {errors.username && <p>{errors.username.message}</p>}
               </div>
-            )}
-            <p>
-              Não tem conta?
-              <Link to={"/register"} className="link">
-                {" "}
-                Registre-se.
-              </Link>
-            </p>
-          </div>
-        </form>
+              <div>
+                <label>Senha:</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="********"
+                  {...register("password", { required: "Senha é necessária" })}
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+              </div>
+            </div>
+            <div className="form-submit">
+              <button>ENTRAR</button>
+              {msg && (
+                <div className="error-message">
+                  <p>{msg}</p>
+                </div>
+              )}
+              <p>
+                Não tem conta?
+                <Link to={"/auth/register"} className="link">
+                  {" "}
+                  Registre-se.
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

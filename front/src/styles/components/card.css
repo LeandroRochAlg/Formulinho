@@ -5,57 +5,61 @@
     align-items: center;
     align-content: center;
     flex-direction: row;
-    width: 100vh;
+    width: 115vh;
     height: 20vh;
     margin: 2vh auto;
-    background-color: #A60303;
+    background-color: #a60303;
     border-radius: 10px;
     position: relative;
-}
-
-.card:hover {
+  }
+  
+  .card:hover {
     background-color: #bd0404;
     box-shadow: 0 0 10px #000000;
     color: yellow;
-}
-
-.img {
+  }
+  
+  .img {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 110px;
-    height: 110px;
-    background-color: black;
-    border-radius: 10px;
-    margin: auto 20px auto 20px ;
-}
-
-
-
-.text {
+    width: 30vh;
+    height: 17vh;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: auto 10px auto 10px;
+  }
+  
+  .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 70%;
+    width: 75%;
     height: 80%;
     color: #000000;
-    letter-spacing: 0.9px;
-}
-
-.card-list{
+    letter-spacing: 0.2vh;
+  }
+  
+  .card-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     list-style-type: none;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-transform: uppercase;
     color: #f4fff8;
-    letter-spacing: 0.9px;
-}
-
-.rating {
+    letter-spacing: 0.2vh;
+  }
+  
+  .rating {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -63,21 +67,30 @@
     align-items: flex-end;
     padding-right: 10px;
     height: 100%;
-
-}
-
-.card-text {
-    font-size: 0.9rem;
-    font-family: 'Inter';
+    font-size: 3vh;
+  }
+  
+  .card-text {
+    font-size: 2.2vh;
+    font-family: "Inter";
     color: white;
     font-weight: bold;
-    margin: 0; 
+    margin: 0;
     font-style: uppercase;
-}
-
-.card-span {
-    font-size: 0.9rem;
+  }
+  
+  .card-span {
+    font-size: 2.2vh;
     color: white;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.2vh;
     font-weight: normal;
-}
+  }
+  
+  .race-name {
+    font-size: 3vh;
+    color: white;
+    letter-spacing: 0.3vh;
+    font-weight: bold;
+    font-style: italic;
+  }
+  

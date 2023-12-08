@@ -1,17 +1,32 @@
 import "../styles/components/card.css";
 
-const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
+const Card = ({
+  raceName,
+  raceRound,
+  circuitId,
+  winner,
+  team,
+  fastestLap,
+  place,
+  mediaEstrelas,
+  onClick,
+}) => {
   return (
     <>
       <div className="card" onClick={onClick}>
         <div className="img">
           <img
-            src={`../assets/img/corridas/${circuitId}.jpg`}
+            src={`../img/corridas/${circuitId}.jpg`}
             alt="Imagem do circuito"
           />
         </div>
         <div className="text">
           <ul className="card-list">
+            <li>
+              <p className="race-name">
+                <span>{raceName}</span>{" "}
+              </p>
+            </li>
             <li>
               <p className="card-text">
                 VENCEDOR: <span className="card-span">{winner}</span>{" "}
@@ -19,28 +34,29 @@ const Card = ({circuitId, winner, team, fastestLap, place, onClick }) => {
             </li>
             <li>
               <p className="card-text">
-                EQUIPE:{" "}
-                <span className="card-span">{team}</span>
+                EQUIPE: <span className="card-span">{team}</span>
               </p>
             </li>
             <li>
               <p className="card-text">
                 VOLTA MAIS RÁPIDA:{" "}
-                <span className="card-span">
-                  {fastestLap}
-                </span>
+                <span className="card-span">{fastestLap}</span>
               </p>
             </li>
             <li>
               <p className="card-text">
-                LOCAL DA PROVA:{" "}
-                <span className="card-span">{place}</span>
+                LOCAL DA PROVA: <span className="card-span">{place}</span>
+              </p>
+            </li>
+            <li style={{display:"none"}}>
+              <p className="card-text">
+                RODADA: <span className="card-span">{raceRound}</span>
               </p>
             </li>
           </ul>
         </div>
         <div className="rating">
-          <p>★★★★★</p>
+          <p className="rating-text">Avaliação: {mediaEstrelas}</p>
         </div>
       </div>
     </>

@@ -50,79 +50,84 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="page-body">
-      <div className="form-container">
-        <div className="form-header">
-          <a href="/">
-            <img
-              id="f1"
-              src="https://account.formula1.com/images/f1_logo.svg"
-              data-i18n="[alt]nav.logo"
-              alt="Formula1"
-            />
-          </a>
-        </div>
-        <form onSubmit={handleSubmit(submit)} noValidate>
-          <div className="form-field">
-            <div>
-              <label>Username:</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="hamilton44"
-                {...register("username")}
+    (document.title = "Registrar"),
+    (
+      <div className="page-body">
+        <div className="form-container">
+          <div className="form-header">
+            <a href="/">
+              <img
+                id="f1"
+                src="https://account.formula1.com/images/f1_logo.svg"
+                data-i18n="[alt]nav.logo"
+                alt="Formula1"
               />
-              <p className="erro">{errors.username?.message}</p>
-            </div>
-            <div>
-              <label>Email:</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="hamilton@ex.com"
-                {...register("email")}
-              />
-              <p className="erro">{errors.email?.message}</p>
-            </div>
-            <div>
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="********"
-                {...register("password")}
-              />
-              <p className="erro">{errors.password?.message}</p>
-            </div>
-            <div>
-              <label>Confirm Password:</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="********"
-                {...register("confirmPassword")}
-              />
-              <p className="erro">{errors.confirmPassword?.message}</p>
-            </div>
+            </a>
           </div>
-          <div className="form-submit">
-            <button>REGISTER</button>
-            {msg && (
-              <div className={userCriado ? "success-message" : "error-message"}>
-                <p>{msg}</p>
+          <form onSubmit={handleSubmit(submit)} noValidate>
+            <div className="form-field">
+              <div>
+                <label>Usuário:</label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="hamilton44"
+                  {...register("username")}
+                />
+                <p className="erro">{errors.username?.message}</p>
               </div>
-            )}
-            <p>
-              Já tem conta?
-              <Link to={"/login"} className="link">
-                {" "}
-                Faça login.
-              </Link>
-            </p>
-          </div>
-        </form>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="hamilton@ex.com"
+                  {...register("email")}
+                />
+                <p className="erro">{errors.email?.message}</p>
+              </div>
+              <div>
+                <label>Senha:</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="********"
+                  {...register("password")}
+                />
+                <p className="erro">{errors.password?.message}</p>
+              </div>
+              <div>
+                <label>Confirme a senha:</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="********"
+                  {...register("confirmPassword")}
+                />
+                <p className="erro">{errors.confirmPassword?.message}</p>
+              </div>
+            </div>
+            <div className="form-submit">
+              <button>REGISTRAR</button>
+              {msg && (
+                <div
+                  className={userCriado ? "success-message" : "error-message"}
+                >
+                  <p>{msg}</p>
+                </div>
+              )}
+              <p>
+                Já tem conta?
+                <Link to={"/auth/login"} className="link">
+                  {" "}
+                  Faça login.
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

@@ -24,12 +24,6 @@
     "password": "$2b$10$AGvIaIt8mhH1IYaf1EvUH.JAYne3VR5iDYJJhintc8/.bDIDeogBa"
   },
   {
-    "id": 5,
-    "username": "doug",
-    "email": "doug@gmail.com",
-    "password": "$2b$10$KFipQ4FB3QDIUPraMtbp9OyfrCtiktdJbhZcHTpCHoJX.9SPQ2nV2"
-  },
-  {
     "id": 6,
     "username": "Nicolas",
     "email": "nicolas@gg",
@@ -48,22 +42,10 @@
     "password": "$2b$10$jUFx9Jn3skiZUDyi4xDJcuGg5Yeh1ZlmnooeR9ctohYCSn5T4Hnvm"
   },
   {
-    "id": 9,
-    "username": "asd",
-    "email": "asd",
-    "password": "$2b$10$XTLNgC4zLEgg2NN.G6maSuAxMaYgVq/adHJFlNbe0dAcYaskeRFXC"
-  },
-  {
-    "id": 10,
-    "username": "asda",
-    "email": "asd",
-    "password": "$2b$10$YNv5PDmrEeL/wW9LqTAvw.2HREDZS4ThnWLtsI8IUzqLULS8norJu"
-  },
-  {
     "id": 11,
     "username": "sainz55",
     "email": "sainz@ferrari.com",
-    "password": "$2b$10$z3ojYa3PjZ1XPJdJTACjg.mZra6Ki2wo9U0HFHf/JEGEfVajZw.aG"
+    "password": "$2b$10$/ez9ZDoGx86yrmA24eOyI.U9FtemefssutY0KV20sDAXvi1J2.tBa"
   },
   {
     "id": 12,
@@ -76,5 +58,23 @@
     "username": "AnaKelly",
     "email": "kelly@gmail.com",
     "password": "$2b$10$.0XauRWwUDhA5Y8XP64bvOJOhvgC3QkE4KmXLtDpSsI6GB4E4aWDu"
+  },
+  {
+    "id": 14,
+    "username": "leclerc16",
+    "email": "leclerc@ferrari.com",
+    "password": "$2b$10$6tqGIngvwLEuC.NG2.1wJOWDoPpCJtUE/S7oA9mb9ZKtkKBc63YHe"
+  },
+  {
+    "id": 15,
+    "username": "cu",
+    "email": "cu@denitro.com",
+    "password": "$2b$10$7e4TDCFzAPVJaKANnlT1xO7vroqYeMABYRRLd5Qd2C1HHJaSNYEvK"
+  },
+  {
+    "id": 16,
+    "username": "verstappen1",
+    "email": "verstappen1@ex.com",
+    "password": "$2b$10$EVxUaA.yGaBvhNj2zyaAgeZD/w2V35Qso4ZG4WPNFuQji6LNS4sjS"
   }
 ]

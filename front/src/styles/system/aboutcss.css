@@ -1,6 +1,12 @@
-.abt-body{
-    background: linear-gradient(90deg, rgb(40, 46, 51) 0%, rgb(40, 46, 51) 40%, rgba(255,255,255,0) 100%),
-                url('../../assets/Runway 2023-12-02T04_04_15.023Z Infinite Image background of an lewis hamilton background.png') center/cover no-repeat;
+.abt-body {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(40, 46, 51) 0%,
+        rgb(40, 46, 51) 40%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url("../../assets/about-bg.png") center/cover no-repeat;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;
@@ -10,10 +16,11 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-}
-
-.abt-body-container{
+  }
+  
+  .abt-body-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6vh;
-}
+  }
+  
