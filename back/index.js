@@ -78,7 +78,7 @@ app.post('/login', async (req, res) => {
     
     // Gerar token
     const token = jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: '15m',    // Expira em 15 minutos
+        expiresIn: '1h',    // Expira em 1 hora
     });
     
     // Retorna token

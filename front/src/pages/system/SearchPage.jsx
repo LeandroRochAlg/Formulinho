@@ -28,6 +28,7 @@ const SearchPage = () => {
   const [selectedYear, setSelectedYear] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [Rounds, setRounds] = useState("");
+  const [disponivel, setDisponivel] = useState(false);
 
   // Função para encontrar a volta mais rápida da corrida
   const voltaMaisRapida = (results) => {
@@ -54,6 +55,7 @@ const SearchPage = () => {
 
     api.get(`/avaliacoes`, data).then((response) => {
       setMediaEstrelas(response.data.media);
+      setDisponivel(true);
     }).catch((error) => {
       console.error('Error during getRatingFromBackend:', error);
     });
@@ -97,7 +99,6 @@ const SearchPage = () => {
     const countryArray = [];
     const raceNameArray = [];
     const mediaEstrelasArray = [];
-    
 
     data.MRData.RaceTable.Races.forEach((race) => {
       circuitIdArray.push(race.Circuit.circuitId);
@@ -113,7 +114,7 @@ const SearchPage = () => {
       } else {
         fastestLapArray.push("Não Aplicável");
       }
-      //mediaEstrelasArray.push(getRatingFromBackend(race.season, race.round));
+      mediaEstrelasArray.push(getRatingFromBackend(race.season, race.round));
     });
     setRaceName(raceNameArray);
     setCircuitId(circuitIdArray);
@@ -124,7 +125,7 @@ const SearchPage = () => {
     setLocalities(localityArray);
     setCountries(countryArray);
     setRounds(roundArray);
-    //setMediaEstrelas(mediaEstrelasArray);
+    setMediaEstrelas(mediaEstrelasArray);
   };
 
   const updateRating = (rating, round) => {
@@ -146,7 +147,7 @@ const SearchPage = () => {
     locality: localities[index],
     country: countries[index],
     raceName: raceName[index],
-    // mediaEstrelas: mediaEstrelas[index],
+    mediaEstrelas: mediaEstrelas[index],
   }));
 
   useEffect(() => {
@@ -190,7 +191,7 @@ const SearchPage = () => {
               <Filter options={years} onChange={fetchData} />
             </div>
 
-            {filteredData.map((dados, index) => (
+            {disponivel && filteredData.map((dados, index) => (
               <Card
                 raceName={dados.raceName}
                 raceRound={dados.round}
