@@ -1,6 +1,6 @@
 [
   {
-    "ano": "2023",
+    "ano": 2023,
     "round": "1",
     "avaliacoes": [
       {
@@ -36,23 +36,7 @@
     ]
   },
   {
-    "ano": "2023",
-    "round": "2",
-    "avaliacoes": [
-      {
-        "id": 4,
-        "idUsuario": "1",
-        "nota": "5"
-      },
-      {
-        "id": 5,
-        "idUsuario": "2",
-        "nota": "3"
-      }
-    ]
-  },
-  {
-    "ano": "2023",
+    "ano": 2023,
     "round": "3",
     "avaliacoes": [
       {
@@ -89,6 +73,28 @@
       {
         "id": 4,
         "idUsuario": 4,
+        "nota": "5"
+      }
+    ]
+  },
+  {
+    "ano": 2023,
+    "round": "2",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": 17,
+        "nota": "4"
+      }
+    ]
+  },
+  {
+    "ano": 2023,
+    "round": "5",
+    "avaliacoes": [
+      {
+        "id": 1,
+        "idUsuario": 17,
         "nota": "5"
       }
     ]

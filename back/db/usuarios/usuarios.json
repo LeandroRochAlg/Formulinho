@@ -76,5 +76,11 @@
     "username": "verstappen1",
     "email": "verstappen1@ex.com",
     "password": "$2b$10$EVxUaA.yGaBvhNj2zyaAgeZD/w2V35Qso4ZG4WPNFuQji6LNS4sjS"
+  },
+  {
+    "id": 17,
+    "username": "leandro",
+    "email": "leandro@hotmail.com",
+    "password": "$2b$10$Eub1aWPkztmxzYMz1088/.psIYrzO48Kp2NPZlrHgCahyf3HW9RL."
   }
 ]
